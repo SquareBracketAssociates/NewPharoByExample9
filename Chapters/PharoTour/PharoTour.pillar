@@ -118,7 +118,7 @@ Other right-click options that may be used are the following:
 
 !!!Calypso: the System Browser
 
-The ""System Browser"", also known as the "Class Browser", is one of the key tools used for programming in Pharo. As we shall see, there are actually several interesting browsers available in Pharo, but this is the basic one you will find in any image. The current implementation of the System Browser is called ""Calypso"". The previous version of the System Browser was called ""Nautilus"".
+The ""System Browser"", also known as the "Class Browser", is one of the key tools used for programming in Pharo. As we shall see, there are actually several interesting browsers available in Pharo, but this is the basic one you will find in any image. The current implementation of the System Browser is called ""Calypso"". The previous version of the System Browser was called Nautilus.
 
 !!!!Opening the System Browser on a given method
 
@@ -130,11 +130,11 @@ This is not the usual way that we open a browser on a method: we can use much mo
 ClyFullBrowserMorph openOnMethod: Integer>>#slowFactorial
 ]]]
 
-It will open a System Browser on the method ==slowFactorial==, showing something like in Figure *@fig:systemBrowser*. The title bar of 'Integer>>#slowFactorial' indicates that we are browsing the class ==Integer== and its method ==slowFactorial==. Figure *@fig:systemBrowser* shows the different entities displayed by the browser: packages, classes, protocols, methods, and the method definition.
+It will open a System Browser on the method ==slowFactorial==, showing something like in Figure *@fig:systemBrowser*. The title bar of 'Integer>>#slowFactorial' indicates that we are browsing the class ==Integer== and its method ==slowFactorial==. Figure *@fig:systemBrowser* shows the different entities displayed by the browser: packages, classes, protocols, methods, executable comments and the method definition.
 
 In Pharo, the default System Browser is Calypso. However, as we have mentioned, it is possible to have other System Browsers installed in the Pharo environment. Each System Browser may have its own GUI that may be very different from the Calypso GUI. From now on, we will use the terms 'Browser', 'System Browser' and 'Calypso' interchangeably.
 
-+The System Browser showing the ==printString== method of class ==Object==.>file://figures/browsingprintString.png|width=100|label=fig:systemBrowser2+
+%+The System Browser showing the ==printString== method of class %==Object==.>file://figures/browsingprintString.png|width=100|label=fig:systemBrowser2+
 
 !!!Chapter summary
 
@@ -144,5 +144,5 @@ This chapter has been a whirlwind tour to introduce you to the Pharo environment
 - A ""Playground"" is a tool for writing and evaluating snippets of code. You can also use it to store arbitrary text.
 - You can use keyboard shortcuts on text in the Playground, or any other tool, to evaluate code. The most important of these are ""Do it"" (==Cmd-D==), ""Print it"" (==Cmd-P==), ""Inspect it"" (==Cmd-I==), and ""Browse it"" (==Cmd-B==).
 - The ""System Browser"" is the main tool for browsing Pharo code and for developing new code.
-- The ""Test Runner"" is a tool for running unit tests, and aids in Test-Driven Development.
-- The ""Debugger"" allows you to examine errors and exceptions (such as errors or failures encountered when running tests). You can even create new methods right in the debugger.
+%- The ""Test Runner"" is a tool for running unit tests, and aids in Test-Driven Development.
+%- The ""Debugger"" allows you to examine errors and exceptions (such as errors or failures encountered when running tests). You can even create new methods right in the debugger.
