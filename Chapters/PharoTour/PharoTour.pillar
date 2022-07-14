@@ -108,9 +108,9 @@ Other right-click options that may be used are the following:
 
 - ""Do it and go"" additionally opens a ''navigable'' inspector on the side of the playground. It allows us to navigate the object structure. Try it with the previous expression ==Morph new openInWorld== and then navigate the structure.
 
-- ""Basic Inspect it"" opens the classic inspector that offers a more minimal interface and live updates of changes to the object.
+- ""Debug it"" opens the debugger on the selected code expression.
 
-- ""Debug it"" opens the debugger on the code.
+- ""Inspect it"" opens the classic inspector that offers a more minimal interface and live updates of changes to the object.
 
 - ""Profile it"" profiles the code with the Pharo profile tool, showing you how much time is spent for each message that is sent.
 
