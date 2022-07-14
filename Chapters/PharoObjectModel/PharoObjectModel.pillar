@@ -859,8 +859,7 @@ Similarly, a class is considered abstract if one of its methods is abstract. Not
 
 !!! Example: the abstract class ==Magnitude==
 
-==Magnitude== is an abstract class that helps us to define objects that can be compared to each other. Subclasses of ==Magnitude== should implement the methods ==<==, ===== and ==hash==. Using such messages, ==Magnitude== defines other methods such as ==>==, ==>===, ==<===, ==max:==, ==min:== ==between:and:== and others for comparing objects. Such methods are inherited by subclasses. The method ==Magnitude>><== is abstract, and defined as shown in the following script.
-%*@scr:MagnitudeLessThan*.
+==Magnitude== is an abstract class that helps us to define objects that can be compared to each other. Subclasses of ==Magnitude== should implement the methods ==<==, ===== and ==hash==. Using such messages, ==Magnitude== defines other methods such as ==>==, ==>===, ==<===, ==max:==, ==min:== ==between:and:== and others for comparing objects. Such methods are inherited by subclasses. The method ==Magnitude>><== is abstract using the message ==subclassResponsibility==, and defined as follows:
 
 [[[label=scr:MagnitudeLessThan|caption===Magnitude>> <==.
 Magnitude >> < aMagnitude
@@ -881,8 +880,8 @@ Magnitude >> >= aMagnitude
 The same is true of the other comparison methods (they are all defined in terms
 of the abstract method ==<==).
 
-==Character== is a subclass of ==Magnitude==; it overrides the ==<== method (which, if you recall, is marked as abstract in ==Magnitude== by the use of ==self subclassResponsibility==) with its own version (see the method definition below). %Script *@scr:characterLessThan*). ==Character== also explicitly defines methods
-===== and ==hash==; it inherits from ==Magnitude== the methods ==>===, ==<===, ==~=== and others.
+==Character== is a subclass of ==Magnitude==; it overrides the ==<== method with its own version (see the method definition below). Remember that this method is declared as abstract in the class ==Magnitude==.
+==Character== also explicitly defines methods ===== and ==hash==; it inherits from ==Magnitude== the methods ==>===, ==<===, ==~=== and others.
 
 [[[label=scr:characterLessThan|caption===Character>> <===.
 Character >> < aCharacter
