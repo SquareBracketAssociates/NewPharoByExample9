@@ -52,10 +52,9 @@ Date today printString
 >>> '24 July 2021'
 ]]]
 
-The following example shows that we can ask a class for the instance variables its instances will have - note that the message ==allInstVarNames== returns the inherited instance variables too.
+The following example shows that we can ask a class for the instance variable names its instances will have - note that the message ==allInstVarNames== returns the inherited instance variable names too.
 
-[[[example=true|caption=Sending ==allInstVarNames== to class ==Date== returns the instance variables 
-that an instance of the class will have (including inherited ones).
+[[[example=true|caption=Getting all the instance variable names of ==Date== class.
 Date allInstVarNames 
 >>> #(#start #duration)
 ]]]
