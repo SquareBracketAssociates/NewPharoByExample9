@@ -205,7 +205,7 @@ Once added, the Iceberg ''Working copy'' browser should show you an empty pane b
 
 !!!! Commit your changes
 
-Once you package is added, Iceberg shows you that there is uncommitted code in the packages managed by your project, as shown in Figure  *@SaveUncommited*. Press the ""Commit"" button. Iceberg will show you all the changes that are about to be saved (Figure *@SaveUncommited2*). Enter a commit message and commit your changes.
+Once your package is added, Iceberg shows you that there is uncommitted code in the packages managed by your project, as shown in Figure  *@SaveUncommited*. Press the ""Commit"" button. Iceberg will show you all the changes that are about to be saved (Figure *@SaveUncommited2*). Enter a commit message and commit your changes.
 
 +Now Iceberg shows you that you did not commit your code.>file://figures/Save4-UncommitedChanges.png|label=SaveUncommited+
 
@@ -271,13 +271,17 @@ This time the test will turn ''yellow'', indicating a test failure - the test ra
 
 !!!Define an initialize method
 
-Now we have to write an initialization method that sets a default value of the ==count== instance variable. However, as we mentioned, the ==initialize== message is sent to the newly created instance. This means that the ==initialize== method should be defined on the ''instance side'', just like any method that is sent to an instance of ==Counter== (==increment== and ==decrement==). The ==initialize== method is responsible for setting up the default values of instance variables.
+Now we have to write an initialization method that sets a default value of the ==count== instance variable.
+In Pharo, when creating a new object sending the message ==new== to a class, the newly created instance is sent a message ==initialize==. This gives the opportunity to the instance to initialize itself. 
+Therefore we will define a ==initialize== method that will correctly initialize the default value of a counter. 
+
+Since the ==initialize== messsage is sent to a new instance, it means that the ==initialize== method should be defined on the ''instance side'', just like any method that is sent to an instance of ==Counter== (==increment== and ==decrement==). The ==initialize== method is responsible for setting up the default values of instance variables.
 
 And so, on the instance side of ==Counter==, and in the ==initialization== protocol, write the following method (the body of this method is left blank. Fill it in!).
 
 [[[
 Counter >> initialize
-  "set the initial value of the value to 0"
+  "set the initial value of count to 0"
 
   "Your code here""
 ]]]
