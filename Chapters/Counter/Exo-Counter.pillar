@@ -1,13 +1,12 @@
 !!A first tutorial: Developing a simple counter
 @cha:counter
 
-To start off in Pharo, let's write a simple counter by following the steps given below. In this exercise you will learn how to create packages, classes, methods, instances, unit tests and more. This tutorial covers most of the important actions you will perform when developing in Pharo. You can also watch the companion videos available in the Pharo MOOC at *http://mooc.pharo.org*, which help illustrate this tutorial.
+To start off in Pharo, let's write a simple counter by following the steps given below. In this exercise you will learn how to create packages, classes, methods, instances, unit tests and more. This tutorial covers most of the important actions you will perform when developing in Pharo. You can also watch the companion videos available in the Pharo MOOC at *http://mooc.pharo.org*, which help illustrate this tutorial (they are called yy-Redo-xxx). We will also show you how to save your code with git hosting services such as GitHub using Iceberg.
 
-Note that the development flow promoted by this little tutorial is ''traditional'' in the sense that you will define a package, a class, ''then'' define its instance variables, ''then'' define its methods, and ''then'' finally execute it. Now in Pharo, developers usually follow a different workflow called Test-Driven Development (much as we saw in the last chapter): they execute an expression that raises an error. These errors are caught by the Debugger and the developer codes directly in the debugger, allowing the system to define instance variables and methods on the fly for them.
+Note that the development flow promoted by this little tutorial is ''traditional'' in the sense that you will define a package, a class, ''then'' define its instance variables, ''then'' define its methods, and ''then'' finally execute it. Now in Pharo, developers usually follow a different workflow called Extreme Test-Driven Development: they execute an expression that raises an error. These errors are caught by the Debugger and the developer codes directly in the debugger, allowing the system to define instance variables and methods on the fly for them.
 
-We will also show you how to save your code with git hosting services such as GitHub using Iceberg.
-
-Once you finish this tutorial, and you feel more confident in Pharo, we strongly suggest you do the exercise again using TDD. Again, there is another video showing this powerful method of coding.
+Once you finish this tutorial, and you feel more confident in Pharo, we strongly suggest you do the exercise again using TDD: define test write, execute them, write the code to make the test pass and loop.
+In Pharo you can also use Extreme TDD: define test write, execute them, write the code in the debugger to make the test pass. Extreme TDD is a super powerful approach. However, you cannot really get the real feel without actually do it by yourself. There is another video in the Pharo mooc showing this powerful approach of coding. We really urge you to have a look at it and practice.
 
 !!!Our use case
 
