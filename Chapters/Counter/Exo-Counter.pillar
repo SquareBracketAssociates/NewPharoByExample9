@@ -364,7 +364,7 @@ First you should create a project on your remote git server. Don't put anything 
 
 !!!!Add a remote repository in HTTPS access
 
-In Iceberg, go to the Working Copy browser of your Counter repository by double-clicking on the repository. Then click on the icon that looks like a box, labeled ""Repository"". This opens the Repository browser for the Counter project, as shown in Figure *@Save7RepositoryBrowser*.
+In Iceberg, go to the Working Copy browser of your Counter repository by double-clicking on the repository. Then click on the icon that looks like a box, labeled ""Repository"". This opens the Repository browser for the project, as shown in Figure *@Save7RepositoryBrowser*.
 
 +A ''Repository'' browser opened on your project.>file://figures/Save7-RepositoryBrowser.png|label=Save7RepositoryBrowser+
 
