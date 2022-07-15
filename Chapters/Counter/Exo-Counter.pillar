@@ -171,7 +171,7 @@ Pharoers frequently use the notation ==ClassName >> methodName== to identify the
 
 From now on, when we show a method in this book, we will write the name of the method in this form. Of course, when you actually type the code into the browser, you don't have to type the class name or the ==>>==; instead, you just make sure that the appropriate class is selected in the class pane.
 
-Verify that the test passes by executing either pressing the circle icon in front of the method (as shown by Figure *@FirstGreenTest*) or using the Test Runner available in the ""Tools"" menu.
+Verify that the test passes by executing either pressing the circle icon in front of the method (as shown by Figure *@FirstGreenTest*) or using the Test Runner.
 
 As you now have your first green test, it's a good time to save your work.
 
