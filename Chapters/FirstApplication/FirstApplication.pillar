@@ -9,7 +9,7 @@ A word of warning: this chapter contains a few deliberate mistakes in order for 
 
 !!!The Lights Out game
 
-The game board consists of a rectangular array of light yellow cells. When you click on one of the cells, the four surrounding cells turn blue. Click again, and they toggle back to light yellow. The object of the game is to turn as many cells blue as possible.
+The game board consists of a rectangular array of light yellow cells. When you click on one of the cells, the cell and its four surrounding cells turn blue. Click again, and they toggle back to light yellow. The object of the game is to turn as many cells blue as possible.
 
 "Lights Out" is made up of two kinds of objects: the game board itself, and 100 individual cell objects. The Pharo code to implement the game will contain two classes: one for the game and one for the cells.
 
@@ -305,8 +305,6 @@ First, ==mouseAction:== in Listing *@scr:TypicalSetter* is a simple accessor met
 LOCell >> mouseAction: aBlock
 	mouseAction := aBlock
 ]]]
-
-We should put it in the ==accessing== protocol.
 
 Finally, we need to override the ==mouseUp:== method. This will be called automatically by the GUI framework if the mouse button is released while the cursor is over this cell on the screen:
 
