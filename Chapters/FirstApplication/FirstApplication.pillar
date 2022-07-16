@@ -18,7 +18,7 @@ The game board consists of a rectangular array of light yellow cells. When you c
 
 We'll need to define a package, which we'll do once again in the Browser. If you need a reminder of how to do this, consult Chapter *: A Quick Tour of Pharo>../PharoTour/PharoTour.pillar@cha:tour* and Chapter *: Developing a simple counter>../Exo-Counter/Exo-Counter.pillar@cha:counter*.
 
-+Create a Package and class template.>file://figures/createPackageFull.png|width=90|label=fig:createPackage+
+%+Create a Package and class %template.>file://figures/createPackageFull.png|width=90|label=fig:createPackage+
 
 We'll call this package ==PBE-LightsOut==. It might be a good idea to filter the package list once you've created the new package: just type ==PBE== into the filter and you should only see our package.
 
