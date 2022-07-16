@@ -152,7 +152,7 @@ Here, we subclass ==BorderedMorph==. ==Morph== is the superclass of all of the g
 
 !!!Initializing our game
 
-Let's define an ==initialize== method for ==LOGame==. Type the contents of *@scr:InitiGame* into the Browser as a method for ==LOGame== and ""Accept"" it.
+Let's define an ==initialize== method for ==LOGame==. Type the contents of Listing *@scr:InitiGame* into the Browser as a method for ==LOGame== and ""Accept"" it.
 
 [[[lineNumber=false|caption=Initialize the game|label=scr:InitiGame
 LOGame >> initialize
