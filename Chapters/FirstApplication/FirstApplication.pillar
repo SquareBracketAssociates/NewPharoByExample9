@@ -127,7 +127,7 @@ If you click on an instance variable, the Inspector will open a new pane with th
 
 The bottom pane of the Inspector acts as a mini-playground. It's useful because in this playground the pseudo-variable ==self== is bound to the object selected.
 
-Go to that Playground at the bottom of the pane and type the text ==self bounds: (200 @ 200 corner: 250 @ 250)== and then "Do it". To refresh the values, click on the ==update== button (the blue little circle) at the top right of the pane. The ==bounds== variable should change in the inspector. Now type the text ==self openInWorld== in the mini-playground and ""Do it"".
+Go to that Playground at the bottom of the pane and type the text ==self bounds: (200 @ 200 corner: 250 @ 250)== and then "Do it". The values should refresh automatically, if this is not the case, click on the ==refresh== button (the blue little circle with arrows) at the top right of the pane. The ==bounds== variable should change in the inspector. Now type the text ==self openInWorld== in the mini-playground and ""Do it"".
 
 !!!!!The Morphic Halo
 
