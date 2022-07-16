@@ -176,11 +176,11 @@ Pharo will complain that it doesn't know the meaning of ==cells== (see Figure *@
 
 !!!Taking advantage of the Debugger
 
-At this stage if you open a ==Playground==, type ==LOGame new==, and ""Do it"", Pharo will complain that it doesn't know the meaning of some of the terms in the method(see Figure *@fig:doesntKnowCellsPerSide*). It will tell you that ==LOGame== doesn't understand the message ==cellsPerSide==, it will open a Debugger. But ==cellsPerSide== is not a mistake; it is just a method that we haven't yet defined. We will do so.
+At this stage if you open a ==Playground==, type ==LOGame new==, and ""Do it"", Pharo will complain that it doesn't know the meaning of some of the terms in the method (see Figure *@fig:doesntKnowCellsPerSide*). It will tell you that ==LOGame== doesn't understand the message ==cellsPerSide==, it will open a Debugger. But ==cellsPerSide== is not a mistake; it is just a method that we haven't yet defined. We will do so.
 
 +Pharo detecting an unknown selector.>file://figures/doesntKnowCellsPerSide.png|width=100|label=fig:doesntKnowCellsPerSide+
 
-Do not close the Debugger. Click on the button ==Create== in the Debugger and, when prompted, select ==LOGame==, the class which will contain the method. Click on ""Ok"", then when prompted for a method protocol enter ==accessing==. The Debugger will create the method ==cellsPerSide== on the fly and invoke it immediately. The default implementation of a method generated this way is to with a body of ==self shouldBeImplemented==. This is then evaluated, which raises an exception and opens... the Debugger again on the method definition.
+Do not close the Debugger. Click on the button ==Create== in the Debugger and, when prompted, select ==LOGame==, the class which will contain the method. Click on ""Ok"", then when prompted for a method protocol enter ==accessing==. The Debugger will create the method ==cellsPerSide== on the fly and invoke it immediately. The default implementation of a method generated this way is to with a body of ==self shouldBeImplemented==. This is then evaluated, which raises an exception and opens the Debugger again on the method definition (Figure *@fig:cellsPerSideShould*).
 
 +The system created a new method with a body to be defined.>file://figures/cellsPerSideShould.png|width=100|label=fig:cellsPerSideShould+
 
@@ -194,7 +194,7 @@ LOGame >> cellsPerSide
 
 +Defining ==cellsPerSide== in the debugger.>file://figures/cellPerSideInDebugger.png|width=80|label=fig:cellPerSideInDebugger+
 
-Do not forget to compile the method definition by using ""Accept"" when you've written it. You should end up with something looking like Figure *@fig:cellPerSideInDebugger*. If you press the button ""Proceed"" the program will continue its execution, and it will stop again as we haven't defined the method ==newCellAt:==. 
+Do not forget to compile the method definition by using ""Accept"" when you've written it. You should end up with something looking like Figure *@fig:cellPerSideInDebugger*. If you press the button ""Proceed"" the program will continue its execution, and it will stop again as we haven't defined the method ==newCellAt:at:==.
 
 We could use the same process but for now we'll stop to explain what we've done so far. Close the Debugger, and look at the class definition once again (which you can do by clicking on ""LOGame"" on the second pane of the ""System Browser""). You will see that the browser has modified it to include the instance variable ==cells==.
 
