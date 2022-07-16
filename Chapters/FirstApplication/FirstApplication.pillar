@@ -61,7 +61,7 @@ A good comment does not excuse hard to read code. And obviously, writing comment
 
 !!!!Class comments
 
-For the class comment, Pharo offers you a template with some suggestions on what makes a good class comment. So, read it! The format is based on Class (or Candidate) Responsibility Collaborator cards (CRC cards), developed by Kent Beck and Ward Cunningham from many influences while they were working in Smalltalk in the 1980s (see their paper *"A Laboratory For Teaching Object-Oriented Thinking">https://c2.com/doc/oopsla89/paper.html* for more details). In a nutshell, the idea is to  state the ''responsibility'' of the class in a couple of sentences, and how it ''collaborates'' with other classes to achieve this. In addition, we can state the class' API (the main messages an object understands), give an example of the class being used (usually in Pharo we define examples as class methods), and some details about the internal representation or the rationale behind the implementation.
+For the class comment, Pharo offers you a template with some suggestions on what makes a good class comment. So, read it! The format is based on Class (or Candidate) Responsibility Collaborator cards (CRC cards), developed by K. Beck and W. Cunningham. In a nutshell, the idea is to  state the ''responsibility'' of the class in a couple of sentences, and how it ''collaborates'' with other classes to achieve this. In addition, we can state the class' API (the main messages an object understands), give an example of the class being used (usually in Pharo we define examples as class methods), and some details about the internal representation or the rationale behind the implementation.
 
 !!!Adding methods to a class
 
