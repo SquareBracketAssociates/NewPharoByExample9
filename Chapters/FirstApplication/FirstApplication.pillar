@@ -121,7 +121,7 @@ In the ""Raw"" tab of the Inspector The left-hand column shows a list of instanc
 
 If you click on an instance variable, the Inspector will open a new pane with the details of the instance variable (see Figure *@fig:inspectBounds*).
 
-+A ==LOCell== opened in the ""World"".>file://figures/LOCellOpenInWorld.png|width=80|label=fig:LOCellOpenInWorld+
+%+A ==LOCell== opened in the ""World"".>file://figures/LOCellOpenInWorld.png|width=80|label=fig:LOCellOpenInWorld+
 
 !!!!!Executing expressions
 
@@ -131,7 +131,7 @@ Go to that Playground at the bottom of the pane and type the text ==self bounds:
 
 !!!!!The Morphic Halo
 
-The cell should appear near the top left-hand corner of the screen (as shown in Figure *@fig:LOCellOpenInWorld*) and exactly where its bounds say that it should appear - i.e. 200 pixels down from the top and 200 pixels in from the left. 
+The cell should appear near the top left-hand corner of the screen and exactly where its bounds say that it should appear - i.e. 200 pixels down from the top and 200 pixels in from the left. 
 
 Meta-click (==Option-Shift-Click==) on the cell to bring up the ""Morphic Halo"". The Morphic halo represents a visual way to interact with a Morph, using the 'handles' that now surround the Morph. Rotate the cell with the blue handle (next to the bottom-left) and resize it with the yellow handle (bottom-right). Notice how the bounds reported by the inspector also change (you may have to click refresh to see the new bounds value). Delete the cell by clicking on the ==x== in the pink handle.
 
