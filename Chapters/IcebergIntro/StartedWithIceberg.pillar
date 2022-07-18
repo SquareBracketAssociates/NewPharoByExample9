@@ -170,7 +170,7 @@ When you add a new repository use the ""New repository"" option as shown in *@Ne
 
 If you want to commit to a remote repository, you will have to add it using the ""Repository"" browser. You can access this browser through the associated menu item or the icon. The Repository browser gives you access to the Git repositories associated with your project: you can access branches, manage them, and also add or remove remote repositories. Figure *@OpeningRepositoryBrowser* shows the Repository browser on our project.
 
-+Opening the repository browser let you add and browse branches as well as remote repositories.>file://figures/S13-OpeningRepository.png|width=75|label=OpeningRepositoryBrowser+
++Opening the repository browser lets you add and browse branches as well as remote repositories.>file://figures/S13-OpeningRepository.png|width=75|label=OpeningRepositoryBrowser+
 
 Pressing the ""Add remote"" button adds a remote; you just need to fill in the information that you can find in your remote Git project. Figure *@OpeningRepositoryBrowser11* shows it for the sample project using SSH and Figure *@OpeningRepositoryBrowser2* for HTTPS.
 
@@ -224,6 +224,10 @@ There are several ways to load your versioned code into a new Pharo image:
 !!!!Loading Baseline using Iceberg
 
 To load a project interactively, you can use the ""Metacello"" menu item in Iceberg, seen when action-clicking the name of your repository. It lets you load a Baseline and execute it to load the project's packages. This way you are sure that all the required sub-projects are loaded.
+
+Pay attention that the project you want to load should be already available in Iceberg (by adding its repository and Iceberg cannot guess where your project is located so it cannot magically guess it). 
+Now if you just want to load the code and you do not care to have the project managed by Iceberg 
+you can use a script as hereafter.
 
 !!!!Manual load
 
