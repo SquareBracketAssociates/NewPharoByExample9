@@ -3,6 +3,8 @@
 
 In this chapter we will explain in more detail how you can publish your project on GitHub using Iceberg. Iceberg is a tool and library that supports the handling of Git repositories; it does more than just save and publish your files. Then we will briefly show how to make sure that you or other developers can load your code without having to understand its internal dependencies.
 
+Note that this chapter has been written to be read in isolation - so you may see some repetitions to other chapters.
+
 We will not explain basic concepts like commit, push/pull, merging, or cloning, please refer to a Git tutorial for this. A strong prerequisite for reading this chapter is that you must be able to publish from the command line to your Git hosting service. If you cannot, do not expect Iceberg to fix it for you. If you have some problems with your SSH configuration (which is the default way to push using GitHub) you can either use HTTPS instead, or read the ''Manage your code with Iceberg'' booklet that you can find on *http://books.pharo.org*. Let us get started.
 
 !!! For the impatient
@@ -55,7 +57,7 @@ IceCredentialsProvider sshCredentials
 
 Now we are ready to have a look at Iceberg the layer managing Git in Pharo.
 
-!!!Iceberg repositories browser
+!!!About Iceberg repository browser
 
 Figure *@freshiceberg* shows the top level pane for Iceberg. It shows that, for now, you do not have any projects defined or loaded. It shows the Pharo project (among others), but indicates that it could not find a local repository for it by displaying 'Local repository missing'.
 
