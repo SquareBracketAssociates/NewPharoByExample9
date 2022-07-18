@@ -112,7 +112,7 @@ When you choose to create the project metadata, Iceberg shows you the filesystem
 
 +Showing where the metadata will be saved and the file encoding.>file://figures/S9-MetaData1.png|width=65|label=Tonel+
 
-Before accepting the changes it is a good idea to add a source folder to your repository, by convention ==src==. Do that by pressing the ""+"" icon. You will be prompted to specify the folder for code as shown in Figure *@metadatasrc*. Do not forget to select the ==src== folder once you created it. Iceberg will show you the exact structure of your project as shown in Figure *@metadatasrc2*.
+Before accepting the changes it is a good idea to add a source folder to your repository, by convention ==src==. Do that by pressing the ""+"" icon. You will be prompted to specify the folder for code as shown in Figure *@metadatasrc*. Do not forget to select the ==src== folder once you created it. If you commit at this point the project, Iceberg will show you the exact structure of your project as shown in Figure *@metadatasrc2*.
 
 +Adding a src repository for code storage.>file://figures/S9-MetaData2.png|width=50|label=metadatasrc+
 
