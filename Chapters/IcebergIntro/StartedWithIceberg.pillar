@@ -112,17 +112,17 @@ When you choose to create the project metadata, Iceberg shows you the filesystem
 
 +Showing where the metadata will be saved and the file encoding.>file://figures/S9-MetaData1.png|width=65|label=Tonel+
 
-Before accepting the changes it is a good idea to add a source folder to your repository, by convention ==src==. Do that by pressing the ""+"" icon. You will be prompted to specify the folder for code as shown in Figure *@metadatasrc*. Do not forget to select the ==src== folder once you created it. If you commit at this point the project, Iceberg will show you the exact structure of your project as shown in Figure *@metadatasrc2*.
+Before accepting the changes it is a good idea to add a source folder to your repository, by convention ==src==. Do that by pressing the ""+"" icon. You will be prompted to specify the folder for code as shown in Figure *@metadatasrc*. Do not forget to select the ==src== folder once you created it. 
 
 +Adding a src repository for code storage.>file://figures/S9-MetaData2.png|width=50|label=metadatasrc+
 
 +Resulting situation with a src folder: Pay attention to select it.>file://figures/S9-MetaData3.png|width=50|label=metadatasrc2+
 
-After accepting the project details, Iceberg shows you the files that you will be committing as shown in Figure *@PublishingMetaData*.
+If you commit at this point the project, Iceberg will show you the exact structure of your project as shown in Figure *@metadatasrc2*. After accepting the project details, Iceberg shows you the files that you will be committing as shown in Figure *@PublishingMetaData*.
 
 +Details of metadata commit.>file://figures/S9-MetaData4.png|width=75|label=PublishingMetaData+
 
-Once you have committed the metadata, Iceberg shows you that your project has been repaired but has not bee loaded, as shown in Figure *@ProjectWithCommits*. This is normal since we haven't added any packages to our project yet. You can still push your changes to your remote repository at this point if you want to.
+Once you have committed the metadata, Iceberg shows you that your project has been repaired but has not been loaded, as shown in Figure *@ProjectWithCommits*. This is normal since we haven't added any packages to our project yet. You can still push your changes to your remote repository at this point if you want to.
 
 Your local repository is ready, let's move on to the next part.
 
@@ -158,7 +158,9 @@ Now you're basically done. You know the essential aspects of managing your code 
 
 !!!What if I did not create a remote repository?
 
-We started by creating a remote repository on GitHub. Then we asked Iceberg to add a project by cloning it from GitHub. So how do we do this the other way around, publishing our local project without a pre-existing repository. This is actually quite simple, so let's give it a whirl.
+We started by creating a remote repository on GitHub. Then we asked Iceberg to add a project by cloning it from GitHub. Now this is not the only order to proceed. You can create a local repository and version your code there and then once you create a remote repository on any Git platform, you will be able to push your code there. Now this is not the taks of Iceberg to create remote repository by registering to hosting platforms. Iceberge manages your code on Git and this is enough.
+
+So let us see how do we do this the other way around, publishing our local project without a pre-existing remote repository. This is actually quite simple, so let's give it a whirl.
 
 !!!!Create a new repository
 
