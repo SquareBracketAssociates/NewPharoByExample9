@@ -349,7 +349,7 @@ n
 ]]]
 
 We can also send the message ==to:do:== to a number which then acts as the
-initial value of a loop counter. You can also check the variant =to:do:by:==.
+initial value of a loop counter. You can also check the variant ==to:by:do:==.
 The two arguments are the upper bound, and a block that takes the current value of the loop counter as its argument:
 
 [[[example=true
