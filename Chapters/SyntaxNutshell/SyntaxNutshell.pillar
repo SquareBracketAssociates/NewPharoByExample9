@@ -17,6 +17,8 @@ startDay: aSymbol
 Pharo's syntax is minimal. Essentially there is syntax only for sending messages (i.e., expressions). Expressions are built up from a very small number of primitive elements (message sends, assignments, closures, returns...). There are only 6 reserved keywords, i.e., pseudo-variables, and there are no dedicated syntax constructs for control structures or declaring new classes. Instead, nearly everything is achieved by sending messages to objects. 
 
 For instance, instead of an if-then-else control structure, conditionals are expressed as messages (such as ==ifTrue:==) sent to Boolean objects. New subclasses are created by sending a message to their superclass.
+In Pharo any control flow or loop is just expressed as messages, therefore this chapter will not be exhaustive because the list would be too long. It focuses on some cases and the reader should read following chapter on Booleans, Collections or Blocks.
+
 
 !!! Syntactic elements
 
@@ -137,7 +139,7 @@ They are called pseudo-variables because they are predefined and cannot be assig
 
 As we described, there are three kinds of messages in Pharo with predefined precedence. This distinction has been made to reduce the number of mandatory parentheses.
 
-Here we give a brief overview on message kinds and ways for sending and executing them, while more detailed description is provided in Chapter *: Understanding messages>../UnderstandingMessage/UnderstandingMessage.pillar@chapterUnderstandingMessage*.
+Here we give a brief overview on message kinds and ways for sending and executing them, while more detailed description is provided in Chapter *: Understanding message Syntax>../UnderstandingMessage/UnderstandingMessage.pillar@chapterUnderstandingMessage*.
 
 #''Unary'' messages take no argument. ==1 factorial== sends the message ==factorial== to the object 1. Unary message selectors consist of alphanumeric characters, and start with a lower case letter.
 #''Binary'' messages take exactly one argument. ==1 \+ 2== sends the message ==\+== with argument 2 to the object 1. Binary message selectors consist of one or more characters from the following set: == + - / \ * ~ < > = @ \% \| \& \? ,==
@@ -300,13 +302,15 @@ any other object.
 
 Pharo offers no special syntax for control constructs.
 Instead, these are typically expressed by sending messages to booleans, numbers and collections, with blocks as arguments.
+In addition, in Pharo, programmers can also define their other conditionals, conditional loops or loops by extending core objets (booleans, integers, collections or blocks). 
+We show now the most frequent ones. By no means this is a complete survey. 
 
 
 !!!! Some conditionals
 Conditionals are expressed by sending one of the messages ==ifTrue:==,
-==ifFalse:== or ==ifTrue:ifFalse:== to the result of a boolean expression.
+==ifFalse:==, ==ifFalse:ifTrue:==, or ==ifTrue:ifFalse:== to the result of a boolean expression.
 See Chapter *: Basic Classes>../BasicClasses/BasicClasses.pillar@cha:basicClasses*,
-for more about booleans.
+for more about booleans. 
 
 [[[example=true
 (17 * 13 > 220)
@@ -317,7 +321,7 @@ for more about booleans.
 
 !!!! Some loops
 Loops are typically expressed by sending messages to blocks, integers or collections.
-Since the exit condition for a loop may be repeatedly evaluated, it should be a block rather than a boolean value. Here is an example of a very procedural loop:
+Since the exit condition for a loop may be repeatedly evaluated, it should be a block rather than a boolean expression. Here is an example of a very procedural loop:
 
 [[[example=true
 n := 1.
@@ -345,7 +349,7 @@ n
 ]]]
 
 We can also send the message ==to:do:== to a number which then acts as the
-initial value of a loop counter.
+initial value of a loop counter. You can also check the variant =to:do:by:==.
 The two arguments are the upper bound, and a block that takes the current value of the loop counter as its argument:
 
 [[[example=true
@@ -463,9 +467,9 @@ Once a method has been annotated with a pragma, the annotations can be collected
 - Strings are delimited by single quotes, comments by double quotes. To get a quote inside a string, double it.
 - Unlike strings, symbols are guaranteed to be globally unique.
 - Use ==#( ... )== to define a literal array at compile time. Use =={ ... }== to define a dynamic array at runtime. Note that ==#(1+2) size >>> 3==, but =={12+3} size >>> 1==.  To observe why, compare ==#(12+3) inspect== and =={1+2} inspect==.
-- There are three kinds of messages: unary (e.g., ==1 asString==, ==Array new==), binary (e.g., ==3 \+ 4==, =='hi', ' there'==), and keyword (e.g., =='hi' at: 2 put: $o==)
+- There are three kinds of messages: unary (e.g., ==1 asString==, ==OrderedCollection new==), binary (e.g., ==3 \+ 4== or =='hi', ' there'==), and keyword (e.g., ==5 between: 2 put: 10==)
 - A cascaded message send is a sequence of messages sent to the same target, separated by semi-colons: ==OrderedCollection new add: #calvin; add: #hobbes; size >>> 2==
 - Local variables declarations are delimited by vertical bars. Use ==:= == for assignment. ==\|x\| x := 1 ==
 - Expressions consist of message sends, cascades and assignments, evaluated left to right (and optionally grouped with parentheses). Statements are expressions separated by periods.
-- Block closures are expressions enclosed in square brackets. Blocks may take arguments and can contain temporary variables. The expressions in the block are not evaluated until you send the block a value message with the correct number of arguments. ==[ :x | x + 2 ] value: 4==
+- Block closures are expressions enclosed in square brackets. Blocks may take arguments and can contain temporary variables. The expressions in the block are not evaluated until you send the block a value (==value==, ==value:==, ==value:value:==, ...) message with the correct number of arguments. ==[ :x | x + 2 ] value: 4==
 - There is no dedicated syntax for control constructs, just messages whose sends conditionally evaluate blocks.
