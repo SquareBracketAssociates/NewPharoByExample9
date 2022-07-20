@@ -471,5 +471,5 @@ Once a method has been annotated with a pragma, the annotations can be collected
 - A cascaded message send is a sequence of messages sent to the same target, separated by semi-colons: ==OrderedCollection new add: #calvin; add: #hobbes; size >>> 2==
 - Local variables declarations are delimited by vertical bars. Use ==:= == for assignment. ==\|x\| x := 1 ==
 - Expressions consist of message sends, cascades and assignments, evaluated left to right (and optionally grouped with parentheses). Statements are expressions separated by periods.
-- Block closures are expressions enclosed in square brackets. Blocks may take arguments and can contain temporary variables. The expressions in the block are not evaluated until you send the block a value (==value==, ==value:==, ==value:value:==, ...) message with the correct number of arguments. ==[ :x | x + 2 ] value: 4==
+- Block closures are expressions enclosed in square brackets. Blocks may take arguments and can contain temporary variables. The expressions in a block are not evaluated until you send the block a value (==value==, ==value:==, ==value:value:==, ...) message with the correct number of arguments. ==[ :x | x + 2 ] value: 4==
 - There is no dedicated syntax for control constructs, just messages whose sends conditionally evaluate blocks.
