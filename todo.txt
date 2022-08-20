@@ -1,12 +1,6 @@
 ## Chapter 15
 
 
-p. 222
-
-"the best way to concatenate characters." But we do not concatenate Characters - we concatenate Strings!
-"Basically the Object>>#printString method ..." should be Object>>printString
-p. 224 "printProtocol: protocol sourceCode: sourceCode" name of the class missing. Is it EpContentStringVisitor?
-
 pp. 225,226 On my mind, it would be better to show element nil after page# on the streams at Figures 15.5-15.11
 
 ## Chapter 14

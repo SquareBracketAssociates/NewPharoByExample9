@@ -378,7 +378,7 @@ space; if the last character isn't a space it adds one.
 !!!About string concatenation
 
 Using ==nextPut:== and ==nextPutAll:== on a ==WriteStream== is often the best
-way to concatenate characters. Using the comma concatenation operator (==,==) is
+way to add characters to a string. Using the comma concatenation operator (==,==) is
 far less efficient as shown by the two following performing the same task.
 
 [[[testcase=true
