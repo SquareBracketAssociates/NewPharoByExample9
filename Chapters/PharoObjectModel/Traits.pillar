@@ -410,20 +410,19 @@ You can also access the overridden methods by creating an alias associated with 
 Traits define methods and instance variables.
 Traits can be considered as kinds of class ''fragments''.
 As such they cannot be directly instantiated.
-Traits are used by classes whose instances have the state and behavior of the trait. 
+Traits are used by classes whose instances gain the state and behavior of the trait. 
 
-In addition a trait is not meant to be subclassed. Inheritance will not work. 
+In addition a trait is not meant to be subclassed. Inheriting from a trait will not work. 
 A trait, however can be reused by other traits. We say it can be composed out other traits. 
 
 So we get a world where: 
 - Classes can be extended by inheritance. Class can use traits. 
 - Traits are reused by classes and other traits. There is no inheritance between traits only composition. 
 
-
 If two classes (using different traits defining a method with the same name such as ==fly== in our example) are in an inheritance relationship, the method lookup works are normal: it works as if the traits would not exist and the methods would be defined directly in the classes.
 
 Let us imagine that ==Bird== uses ==TFlyingAbility==,  ==Eagle== uses ==THighFlyingAbility==, and ==Eagle== inherits ==Bird==.
-An instance of ==Eagle== will execute the method fly from ==THighFlyingAbility== or its local redefinition if it was locally redefined by the class.
+An instance of ==Eagle== will execute the method ==fly== from ==THighFlyingAbility== or its local redefinition if it was locally redefined by the class.
 
 
 !!! Conclusion
