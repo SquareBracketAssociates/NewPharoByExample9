@@ -1,0 +1,228 @@
+## Chapter 15
+
+There are many fragments of the text like "the method defined in the Class". It would be really simple to write "Class>>method" instead.
+
+p. 221
+
+'This image contains: 9003 classes. - H-m-m, the fresh image of Pharo 9.0 contains about 10672 classes
+"The message streamContents: defined SequenceableCollection creates" - are some words missing? May be "The message streamContents: defined in SequenceableCollection class creates"?
+p. 222
+
+"the best way to concatenate characters." But we do not concatenate Characters - we concatenate Strings!
+"Basically the Object>>#printString method ..." should be Object>>printString
+p. 224 "printProtocol: protocol sourceCode: sourceCode" name of the class missing. Is it EpContentStringVisitor?
+
+pp. 225,226 On my mind, it would be better to show element nil after page# on the streams at Figures 15.5-15.11
+
+## Chapter 14
+
+Many exapmles of code do not declare any local variables but use them. This contrasts with the previous chapters, where each used local variable were declared in | |.
+
+p. 190 Figure 14-2: Linked Implementation / SkipList - such class not exist in Pharo now. Should be removed. Then look: Linked Implementation - only LinkedList; Interval Implementation - only Interval; all other classes use Arrayed Implementation directly or internally. So, is the Figure really usefull?
+
+p. 194
+
+Error: "new: anInteger creates a collection of size anInteger whose elements will all be nil." is true ONLY for arrays: common Array and specialized variants. String new: 3 >>> ' ' - not three nil. I think "new: aSize" do not belongs to the COMMON creation protocol.
+Question: How about new? Set new, Dictionary new, OrderedCollection new - the usual way to create an empty collection. Why there are not any mension about "new" in the subsection Common creation protocol?
+Error: "(1 to: 5) asOrderedCollection addAll: '678'; yourself" will return "an OrderedCollection(1 2 3 4 5 $6 $7 $8)" not the "an OrderedCollection(1 2 3 4 5 6 7 8)". It should be "(1 to: 5) asOrderedCollection addAll: #(6 7 8); yourself"
+Question: is it really appropriate to show addAll: in the Common creation protocol subsection?
+p. 197 Error: The paragraph "Be careful: general principle is that literal arrays are not be modified! Literal arrays are kept in compiled method literal frames (a space where literals ap�pearing in a method are stored), therefore unless you copy the array, the second time you execute the code your literal array may not have the value you expect. In the example, without copying the array, the second time around, the literal #(1 2 3 4 5 6) will actually be #(1 2 33 4 5 6)! Dynamic arrays do not have this problem because they are not stored in literal frames." is partially wrong. A literal array is immutable now.
+
+p. 200 Error: "(1 to: 6) union: (4 to: 10) >>> a Set(1 2 3 4 5 6 7 8 9 10)" - the wrong answer, Collection>>union: uses self species, and Interval>>species returns Array, so such answer is impossible. Should be ">>> #(8 5 2 10 7 4 1 9 6 3)"
+
+p. 203 Error: "the method copyReplaceAll:" should be "the method copyReplaceAll:with:"
+
+p. 209
+
+Contradiction: "The message detect:ifNone: is a variant of the METHOD detect:." Should be "The message detect:ifNone: is a variant of the message detect:." Or "method -- method".
+Mathematical error: "we could write this expression to sum the first 100 integers: (1 to: 100)..." 1 is not "a first integer" but it is a first Natural number. So, it should be "the first 100 natural numbers:"
+p. 210 "Smalltalk mistakes" or "Pharo mistakes"?
+
+
+## Chapter 13
+
+p. 169 A wrong statment: "RECALL that a package may add new functionality to a class even if it does not define this class." "Recall" is wrong: there is not any word about this neither in the previous chapters nor in the next ones.
+
+p. 170 A reference to the Listing 13-1 is missing
+
+p. 171 "The message storeOn: writes to its argument..." - message or method?
+
+pp. 172-173 Should be references to The Listings
+
+p. 174 typo: "13.6 About isKindOf: and respondTo:" should be "respondsTo:"
+
+p. 175 Question: "Since instance variables are accessed by reference, a shallow copy of an object shares its references to instance variables with the original object." Really "are variables accessed by reference"? Or variables hold references to their values? Really "shares references to instance variables"? Or shares references to values? Each instance has its own set of instance variables, so "to share references to instance variables" isn't correct on my mind.
+
+p. 177 "Stack>>pop could easily have been implemented as follows (note that this definition is anhypothetical example and not in the Pharo 8.0 system):" but
+
+the Listing 13-6 is above the text, so how it can be "as follows"
+Pharo 8.0 or 9.0?
+p. 180
+
+Error in Figure 13-10: LargeInteger missing. LargePositiveInteger and LargeNegativeInteger both are subclasses of LargeInteger.
+"The remaining operators are generically defined. For example:" - Ups, the example jumped to the Listing to the top of the page.
+p.181 ">>> 100@10 "Point creation" " Should be ">>> (100@10) "Point creation" "
+
+p. 182 Error: "Fraction>>numerator:denominator:" Should be "Fraction class >> numerator:denominator:"
+
+p. 183 "The protocol accessing untypeable characters contains a number of convenience constructor methods such as backspace, cr, escape, euro, space, tab, and so on." - the Character class >> euro do not belongs to that protocol, but it is an extension method.
+
+p. 185 Error: "'hello' at: 2 put: $u; yourself" - the string literal is immutable
+
+p. 186 "The implemen�tations in its concrete subclasses are both trivial:" again, the code jumped to the top
+
+## Chapter 12
+
+p. 161 Duplicating text/statements: "Each test should cover one aspect of a piece of code." from the third property of a good test is about the forth one, so should be (re)moved to the "Tests should be validate one aspect". By the way, "should be validate" or "should validate"?
+
+p. 162 "The message TestCase >> setUp defines..." would be better "The method TestCase >> setUp defines..."
+
+p. 163 Errors:
+
+"Simply click on the icon of the class name, or on an individual test method, and select Run tests (t)" should be "Simply right-click on the package name, or on the class name, or on an individual test method, and select Run tests (Cmd+T)"
+"The test methods will be flagged green or red" - No! It will be flagged green or YELLOW
+p. 164
+
+"Test Runner, which you can open by selecting World > Test Runner" should be "... World > Browse > Test Runner"
+"Some people include an executable comment..." - the executable comment is missing in the snippet below.
+"therefore all other TestCase subclasses and is responsible for all kind of test result assertions." some word is missing? or odd?
+p. 165 "The message assert:equals: offers a better report than assert: in case of error." - would be it more precise to say "in case of failure"?
+
+p. 166 "The method below illustrates the use of should:raise:." - but the method is ABOVE
+
+## Chapter 11
+
+p. 151 A unigue caption "Listing 11-1 A simple trait." would be deleted. It is unique for all the chapter, so...
+
+p. 152 typo: "the trait TGreetable in invoking the method" should be "is invoking"
+
+p. 153 typo:
+
+"s an instance variable named #count." OR count ???
+"... by defining a method initialize followed by the class named." should be "trait name"
+p. 156 typo: "overriddent" - ???
+
+Several important things were left "behind the scene":
+
+can we create an instance of a trait - No
+how can I define a new trait? In the previous book were few words about Brouser and corresponding command such "New trait"
+can I inherit the class that uses a trait - what will happen? What will happen if Bird uses TFlyingAbility, Eagle uses THighFlyingAbility, and Eagle inherits Bird? What metod fly will act? Will the conflict raise? - No, because ... - this may be interesting.
+
+## Chapter 10
+
+
+There is a contradiction with demonstration of the program code in the chapter: some code snippets are placed in the text (smoothly with the explanation), on the other hand, another parts of code are placed into separate listings without references to them. Only listings 10-6, 10-12, 10-14..18 are refernced, and others are not. What the aim was to separate code snippets from the text? For example, in the subsection 10-2 Everything is an Object the sentence "Here are two examples." is surrounded by other text, there are not code around it - there are THREE listings jumped to the top of the page. It is unclear.
+
+p. 122 Error: "At the end of this chap�ter, we added an implementation note on the object implementation for the curious reader." is a wrong statment and shoud be removed because the corresponding section was removed from this version of the book.
+
+p. 123 Error in Listing 10-4: a part of the caption became a part of the code
+
+p. 126 "As a consequence, we can send the same message to different objects, each of which may have its own method for responding to the message.
+
+In the previous examples, we do not decide how the SmallInteger 3..." somewhere here should be a reference to the Listings 10-7, 10-8. Or move the code snippets directly to the place. (would be better on my mind)
+
+p. 132 Error in the Listing 10-14: should be "Morph >> openInWorldReturnSelf" as denoted in the text below.
+
+p. 133 " Imagine that we define the following three methods:" - U-upss, there are not any code here! It is separated to the Listings at the top of the page. Should be a reference istead the ":" or move the code into the text.
+
+pp. 134-135. We are talking about anEllipse in the text an Figure 10-19, but we have the message "EllipseMorph new constructorString". May be would be better to define (or explain) anEllipse := EllipseMorph new ?
+
+p. 134
+
+Error: "and the method fullPrintOn: BorderedMorph is found" - BorderedMorph should be deleted
+"The message fullPrintOn: is looked up" should be "The method fullPrintOn: ..."
+p. 136
+
+Error: "Similarly, class instance variables are just instance variables defined by a metaclass (a class whose instances are classes):" - but a metaclass has only single class, not classES. Should be "(a class whose instance is a class)".
+Error: "Sending the message now to the class Date is..." the class Date does not understand "now". Should be "Time now" or "Date today".
+Question: "You will therefore find the method blue defined on the class side of Color, not on the instance side." is some confusing because I CAN find the method blue on the INSTANCE SIDE. It has another meaning then a class one, but... May be "Color paleBlue" would be better?
+p. 137 What is the purpose of the Listings 10-21, 22, 23?
+
+p. 141 A strange situation with code snippets that illustrate class instance variables: "Point class allInstVarNames" in the text and "WebServer class allInstVarNames" in the separate listing above. It is very hard to understand and to compare the results. It would be better to place both snippets to the text successively (as in the previous version). And WHY Point??? Earlier was "Object class allInstVarNames" that was natural.
+
+p. 142 "We can now define a class method named uniqueInstance, as shown below." - Ups, Listing 10-32 is situated ABOVE
+
+p. 143
+
+Error: "Now we will look at an aspect of Pharo that is not so easily covered by our five rules: shared variables." There were SIX rules in the section 10.1
+Error: "The variable Processor names an instance of ProcessScheduler" should be ProcessorScheduler
+p. 144 Inconsistance: "Undeclared ... the browser will normally prompt you to declare it, for example as a global or as an instance variable of the class." No, it prompt to declare AS CLASS VARIABLE, not as an instance variable of the class :(
+
+p. 146
+
+A question: Listing 10-35 has not a method's selector, and ColorName is something invented. Is it good? Color has not variable ColorName.
+typo: "TextConstants defines the variables CR that is bound..." shoud be "variable"
+p. 147 typo: "eventhough" should be "even though"
+
+p. 149 "Although Pharo supports only single in�heritance, it is easy to share implementations of methods by packaging them as traits." - should be removed because the corresponding subsection was moved to the next chapter of this version of the book.
+
+
+## Chapter 10
+
+Bonjour Stéphane,
+
+Ce qui suit concerne la section suivante du chapitre 10 (pages 134 et 135) :
+
+10.7 Sending a message: a two-step process
+
+Tout est parfaitement clair (à mes yeux) sauf le rôle de ces deux listings :
+
+Listing 10-9 A locally implemented method.
+EllipseMorph >> defaultColor
+"Answer the default color/fill style for the receiver"
+^ Color yellow
+
+Listing 10-10 An inherited method.
+Morph >> openInWorld
+"Add this morph to the world."
+self openInWorld: self currentWorld
+
+By the way : A la page 113 (il s'agit du chapitre 9) il y a une coquille
+mineure :
+
+The pen moves forward 100 pixels
+
+100 pixels n'est pas placé dans le bon champ :
+
+https://ramix.org/pharo/PBE90/100pixels.png
+
+## Chapter 9
+
+p. 106 "A receiver can be the first element of a message" - contradicts to the terminology, because "A message is composed of a message selector and optional message arguments". So it should be "A receiver can be the first element of an expression" (or message sent).
+
+p. 107
+
+The same situation: "For example in the message Pen new go: 100": the messages are "new" and "go: 100" but "Pen new go: 100" is an expression.
+The table: "100 pixels" jumped from third column to second one
+The table: "100 is increased by 20" is it true? The object 100 will be modified or the new object 120 will be created?
+p. 108 "Unary messages ... not containing a colon ():)" - the first rigth parenthese is needless.
+
+p. 111
+
+Wrong result in the example "[:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] value: Boolean". It returns an Array, not an IdentitySet. Should be ">>> #(#ifTrue: #| #xor: #asBit #ifFalse:ifTrue: #ifFalse: #ifTrue:ifFalse: #or: #& #and: #not)"
+some strange situation: several times in the book were written "Class>>methodName isn't a syntax, this is only a way to note..." but now we saw in the example (aClass>>aMethod) - !?!?
+Decomposing the execution of aPen color: Color yellow in the last example - should it be double quoted as a comment?
+p. 112 The reference to Figure 9-4 is missing
+
+p. 113 Bad formatting of the last example. Should "Example of Parentheses." be a comment?
+
+p. 115
+
+There are not references to Figures 9-7, 9-8.
+A strange situation: Decomposing 20 + (2 * 5) has the title an 20+2*5 has not. How about a common style of examples?
+p. 116
+
+Figure 9-10: the receiver Bot new is not underlined
+Figures 9-9, 9-10 are very nice but there are not references to it.
+The table: "aPen go: 100 + 20=" = should be deleted
+p. 117 Bad formatting of the last example.
+
+p. 118
+
+"aReceiverExpression msg1 ; msg2 ; msg3" need we spaces before semicolons?
+"the first cascaded message is setX:setY since it is followed by a cascade" - "followed by a semicolon" would be better. Or not?
+p. 119
+
+"Unary messages are messages that do not require any argument. They are of the form: selector." - according to the next items of the list it should be "... They are of the form: receiver selector.", selector - bold
+"Binary messages are messages that involve two objects, the receiver and another object" - another object OR an argument?
+"receiver selectorKeywordOne: argumentOne KeywordTwo: argu�mentTwo ... KeywordN: argumentN" - KeywordTwo:, KeywordN should start with lowercase.
