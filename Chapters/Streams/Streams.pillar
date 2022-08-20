@@ -136,10 +136,12 @@ stream next: 0.
 stream next: 1.
 >>>   'a'
 ]]]
+
 [[[testcase=true
 stream next: 3.
 >>>   'bcd'
 ]]]
+
 [[[testcase=true
 stream next: 2.
 >>>   'ef'
@@ -180,6 +182,7 @@ stream := '-143' readStream.
 (stream peekFor: $-).
 >>> true
 ]]]
+
 [[[testcase=true
 stream upToEnd
 >>> '143'
@@ -414,7 +417,7 @@ String streamContents: [ :tempStream |
 !!!About printString
 
 Let us take a moment to step back about stream usage in ==printOn:== methods.
-Basically the ==Object>>#printString== method creates a stream and passes this stream as argument of the ==printOn:== method as shown below:
+Basically the ==Object>>printString== method creates a stream and passes this stream as argument of the ==printOn:== method as shown below:
 
 [[[
 Object >> printString
@@ -484,8 +487,8 @@ Stream >> print: anObject
 
 
 !!!! Another example
-This extra creation of stream is not limited to ==printString== logic. 
-Here is an example taken from Pharo that exhibits exactly the same problem.
+This superfluous stream creation is not limited to ==printString== logic. 
+Here is an example taken from Pharo (knowing the exact class is not important) that exhibits exactly the same problem.
 
 [[[
 printProtocol: protocol sourceCode: sourceCode
