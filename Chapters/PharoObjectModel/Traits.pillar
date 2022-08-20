@@ -9,14 +9,16 @@ Since Pharo 7.0, traits can also hold state.
 Using traits allows one to share code between different classes without duplicating code.
 This makes it easy for classes to ''reuse'' useful behavior across classes.
 
+
 As we will show later, traits propose a way to compose and resolve conflicts in disciplined manner. With traits this is not the latest loaded method that wins as this happens with other languages. In Pharo, the composer (be it a class or a trait) always takes precedence and can decide in its context
 how to resolve a conflict: Methods can be excluded but still accessible under a new name at composition time.
 
 !!! A simple trait
 
-The following code defines a trait. The ==uses:== clause is an empty array indicating that this trait is not composed of other traits.
+The following code defines a trait by sending the message ==named:uses:package:== to the class ==Trait==.
+The ==uses:== clause is an empty array indicating that this trait is not composed of other traits.
 
-[[[label=scr:flying|caption=A simple trait.
+[[[
 Trait named: #TFlyingAbility
 	 uses: {}
 	 package: 'Traits-Example'
@@ -29,6 +31,10 @@ The trait ==TFlyingAbility== defines a single method ==fly==.
 TFlyingAbility >> fly 
 	^ 'I''m flying!'
 ]]]
+
+
+A trait cannot be instantiated. It should be used by a class and that class will create instances
+that can answer messages defined in trait. 
 
 Now we define a class called ==Bird==. It uses the trait ==TFlyingAbility==, 
 as a result the class contains then the ==fly== method.
@@ -50,10 +56,10 @@ Bird new fly
 
 
 !!! Using a required method
-The trait methods do not have to define a complete behavior. A trait method 
-can invoke methods that will be available on the class using it.
+The trait methods do not have to define a complete behavior. 
+A trait method can invoke methods that will be available on the class using it.
 
-Here the method ==greeting== of the trait ==TGreetable== in invoking the method ==name== that is not defined
+Here the method ==greeting== of the trait ==TGreetable== is invoking the method ==name== that is not defined
 in the trait itself.
 In such a case the class using the trait will have to implement such a ''required'' method.
 
@@ -135,7 +141,7 @@ foo whoAmI == foo
 
 !!! Trait state
 Since Pharo 7.0 traits can also define instance variables.
-Here the trait ==TCounting== defines an instance variable named ==#count==.
+Here the trait ==TCounting== defines an instance variable named ==count==.
 
 [[[
 Trait named: #TCounting
@@ -143,7 +149,7 @@ Trait named: #TCounting
 	package: 'Traits-Example'
 ]]]
 
-The trait can initialize its state by defining a method ==initialize== followed by the class named.
+The trait can initialize its state by defining a method ==initialize== followed by the class name.
 Note that this is a coding convention. Here the trait ==TCounting== defines the method ==initializeTCounting==.
 
 [[[
@@ -320,7 +326,7 @@ It may happen that two traits used in the same class define the same method.
 This situation is a conflict.
 To solve such a conflict, there are two strategies:
 # Using the exclude operator (==\-==), you can exclude the conflicting method from the trait defining the method. In this case the other method will be the one available in the class,  
-# or redefine the conflicting method locally in the class. In such a case, the conflicting methods are overridden and the new redefined behavior is the one that will be available in the class. Note that overriddent methods can be made accessible as previously explained with the ==\@== operator.
+# or redefine the conflicting method locally in the class. In such a case, the conflicting methods are overridden and the new redefined behavior is the one that will be available in the class. Note that overridden methods can be made accessible as previously explained with the ==\@== operator.
 
 Here is an example. Let us define another trait named ==THighFlyingAbility==.
 
@@ -397,6 +403,21 @@ Eagle new fly
 ]]]
 
 You can also access the overridden methods by creating an alias associated with the trait as explained before.
+
+
+!!! Traits are not meant to be subclassed
+
+Traits define methods and instance variables.
+Traits can be considered as kinds of class ''fragments''.
+As such they cannot be directly instantiated.
+Traits are used by classes whose instances have the state and behavior of the trait. 
+
+In addition a trait is not meant to be subclassed. Inheritance will not work. 
+A trait, however can be reused by other traits. We say it can be composed out other traits. 
+
+So we get a world where: 
+- Classes can be extended by inheritance. Class can use traits. 
+- Traits are reused by classes and other traits. There is no inheritance between traits only composition. 
 
 
 !!! Conclusion

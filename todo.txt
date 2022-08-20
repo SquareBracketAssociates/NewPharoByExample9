@@ -1,7 +1,36 @@
-## Chapter 15
+## Chapter 11
+
+p. 151 A unigue caption "Listing 11-1 A simple trait." would be deleted. It is unique for all the chapter, so...
+
+p. 152 typo: "the trait TGreetable in invoking the method" should be "is invoking"
+
+p. 153 typo:
+
+"s an instance variable named #count." OR count ???
+
+"... by defining a method initialize followed by the class named." should be "trait name"
+p. 156 typo: "overriddent" - ???
 
 
-pp. 225,226 On my mind, it would be better to show element nil after page# on the streams at Figures 15.5-15.11
+
+Several important things were left "behind the scene":
+
+can we create an instance of a trait - No
+how can I define a new trait? In the previous book were few words about Brouser and corresponding command such "New trait"
+
+This is the first code snippet of the chapter. So I added one sentence
+
+
+can I inherit the class that uses a trait - what will happen? What will happen if Bird uses TFlyingAbility, Eagle uses THighFlyingAbility, and Eagle inherits Bird? What metod fly will act? Will the conflict raise? - No, because ... - this may be interesting.
+
+
+
+
+
+
+
+
+
 
 ## Chapter 14
 
@@ -79,23 +108,10 @@ p. 165 "The message assert:equals: offers a better report than assert: in case o
 
 p. 166 "The method below illustrates the use of should:raise:." - but the method is ABOVE
 
-## Chapter 11
 
-p. 151 A unigue caption "Listing 11-1 A simple trait." would be deleted. It is unique for all the chapter, so...
 
-p. 152 typo: "the trait TGreetable in invoking the method" should be "is invoking"
 
-p. 153 typo:
 
-"s an instance variable named #count." OR count ???
-"... by defining a method initialize followed by the class named." should be "trait name"
-p. 156 typo: "overriddent" - ???
-
-Several important things were left "behind the scene":
-
-can we create an instance of a trait - No
-how can I define a new trait? In the previous book were few words about Brouser and corresponding command such "New trait"
-can I inherit the class that uses a trait - what will happen? What will happen if Bird uses TFlyingAbility, Eagle uses THighFlyingAbility, and Eagle inherits Bird? What metod fly will act? Will the conflict raise? - No, because ... - this may be interesting.
 
 ## Chapter 10
 
