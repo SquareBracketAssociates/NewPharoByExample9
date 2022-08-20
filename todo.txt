@@ -1,11 +1,6 @@
 ## Chapter 15
 
-There are many fragments of the text like "the method defined in the Class". It would be really simple to write "Class>>method" instead.
 
-p. 221
-
-'This image contains: 9003 classes. - H-m-m, the fresh image of Pharo 9.0 contains about 10672 classes
-"The message streamContents: defined SequenceableCollection creates" - are some words missing? May be "The message streamContents: defined in SequenceableCollection class creates"?
 p. 222
 
 "the best way to concatenate characters." But we do not concatenate Characters - we concatenate Strings!
