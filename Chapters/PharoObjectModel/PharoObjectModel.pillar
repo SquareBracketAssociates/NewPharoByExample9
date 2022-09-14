@@ -354,16 +354,16 @@ In fact, this can be an easy way to implement automatic delegation of messages f
 
 !!!About returning self
 
-Notice that the method ==defaultColor== of the class ==EllipseMorph== explicitly returns ==Color yellow==, whereas the method ==openInWorld== of ==Morph== does not appear to return anything.
+Notice that the method ==defaultColor== of the class ==EllipseMorph== explicitly returns ==Color yellow== (see Listing *@EDefaultColor*), whereas the method ==openInWorld== of ==Morph== does not appear to return anything (see Listing *@MopenInWorld*).
 
 Actually a method ''always'' answers a message with a value (which is, of course, an object). The answer may be defined by the ==^== construct in the method, but if execution reaches the end of the method without executing a ==^==, the method still answers a value \-\- it answers the object that received the message. We usually say that the method ''answers self'', because in Pharo the pseudo-variable ==self== represents the receiver of the message, much like the keyword ==this== in Java. Other languages, such as Ruby, by default return the value of the last statement in the method. Again, this is not the case in Pharo, instead you can imagine that a method without an explicit return ends with ==^ self==.
 
 @@important ==self== always represents the receiver of the message. 
 
-This suggests that ==openInWorld== is equivalent to ==openInWorldReturnSelf==, defined in Listing *@scr:openInWorldReturnSelf*.
+This suggests that ==openInWorld== as defined in Listing *@MopenInWorld* is equivalent to the hypothical method ==openInWorldReturnSelf== defined in Listing *@scr:openInWorldReturnSelf*.
 
 [[[label=scr:openInWorldReturnSelf|caption=Explicitly returning ==self==.
-Morph >> openInWorld
+Morph >> openInWorldReturnSelf
     "Add this morph to the world."
     self openInWorld: self currentWorld
     ^ self
@@ -415,7 +415,7 @@ Like ==self==, ==super== represents the receiver of the message. Yes you read it
 @@important ==super== represents the receiver of the message and the method lookup starts in the superclass of the class of the method where the ==super== send occurs.
 
 We shall see in the following example precisely how this works.
-Imagine that we define the following three methods:
+Imagine that we define the following three methods: ==Morph>>fullPrintOn:==, ==Morph >> constructorString==, and ==BorderedMorph >> fullPrintOn:==
 
 First in Listing *@scr:morphfullPrintOn*, we define the method ==fullPrintOn:== on class ==Morph== that just adds to the stream the name of the class followed by the string ' new' - the idea is that we could execute the resulting string and get back an instance similar to the receiver.
 
@@ -458,7 +458,7 @@ First, ==anEllipse constructorString== will cause the method ==constructorString
 +==self== and ==super== sends.>file://figures/constructorStringLookup.png|label=fig:constructorStringLookup|width=95+
 
 The method ==constructorString== of ==Morph== performs a ==self== send of ==fullPrintOn:==.
-The message ==fullPrintOn:== is looked up starting in the class ==EllipseMorph==, and the method ==fullPrintOn:== ==BorderedMorph== is found in ==BorderedMorph== (see Figure *@fig:constructorStringLookup*). 
+The method ==fullPrintOn:== is looked up starting in the class ==EllipseMorph==, and the method ==fullPrintOn:== ==BorderedMorph== is found in ==BorderedMorph== (see Figure *@fig:constructorStringLookup*). 
 What is critical to notice is that the ==self== send causes the method lookup to start again in the class of the receiver, namely the class of ==anEllipse==.
 
 At this point, the method ==fullPrintOn:==  of ==BorderedMorph== does a ==super== send to extend the ==fullPrintOn:== behaviour it inherits from its superclass. 
@@ -484,9 +484,9 @@ Since classes are objects, they have their own instance variables and their own 
 
 An instance variable describes instance state and a method describes instance behavior.
 
-Similarly, class instance variables are just instance variables defined by a metaclass (a class whose instances are classes):
+Similarly, class instance variables are just instance variables defined by a metaclass:
 - ''Class instance variables'' describe the state of classes. An example is the superclass instance variable that describes the superclass of a given class.
-- ''Class methods'' are just methods defined by a metaclass and that will be executed on classes. Sending the message ==now== to the class ==Date== is defined on the (meta)class ==Date class==. This method is executed with the class ==Date== as receiver.
+- ''Class methods'' are just methods defined by a metaclass and that will be executed on classes. Sending the message ==now== to the class ==Time== is defined on the (meta)class ==Time class==. This method is executed with the class ==Time== as receiver.
 
 A class and its metaclass are two separate classes, even though the former is an instance of the latter. However, this is largely irrelevant to you as a programmer: you are concerned with defining the behavior of your objects and the classes that create them.
 
@@ -497,22 +497,19 @@ For this reason, the browser helps you to browse both class and metaclass as if 
 - By default, when you select a class in the browser, you're browsing the ''instance side'' i.e., the methods that are executed when messages are sent to an ''instance'' of ==Color==. 
 - Clicking on the ""Class side"" button switches you over to the ''class side'': the methods that will be executed when messages are sent to the ''class'' ==Color== itself.
 
-For example, ==Color blue== sends the message ==blue== to the class ==Color==. You will therefore find the method ==blue== defined on the ''class side'' of ==Color==, not on the instance side.
+For example, ==Color paleBlue== sends the message ==paleBlue== to the class ==Color== (see Listing *@paleBlue*). You will therefore find the method ==paleBlue== defined on the ''class side'' of ==Color==, not on the instance side.
 
-[[[example=true|caption=The class method ==blue== (defined on the class-side).
-Color blue
->>> Color blue
+[[[example=true|caption=The class method ==blue== (defined on the class-side).|label=paleBlue
+Color paleBlue
+>>> Color paleBlue
 "Color instances are self-evaluating"
 ]]]
 
-[[[example=true|caption=Using the accessor method ==red== (defined on the instance-side).
-Color blue red
->>> 0.0
-]]]
+Note that the class ==Color== also defines an instance side method ==blue== to access the blue component of a color. So you can send the message ==blue== to the ==Color== instance returned by the expression ==Color paleBlue== as in Listing *@paleblueblue*.
 
-[[[example=true|caption=Using the accessor method ==blue== (defined on the instance-side).
-Color blue blue
->>> 1.0
+[[[example=true|caption=Using the accessor method ==blue== (defined on the instance-side).|label=paleblueblue
+Color paleBlue blue
+>>>  0.9951124144672532
 ]]]
 
 !!!!Metaclass creation
