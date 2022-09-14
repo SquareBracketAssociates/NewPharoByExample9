@@ -27,34 +27,36 @@ Let us look at each of these rules in detail.
 
 !!!Everything is an Object
 
-The mantra ''everything is an object'' is highly contagious. After only a short while working with Pharo, you will become surprised how this rule simplifies everything you do. Integers, for example, are objects too, so you send messages to them, just as you do to any other object. At the end of this chapter, we added an implementation note on the object implementation for the curious reader.
+The mantra ''everything is an object'' is highly contagious. After only a short while working with Pharo, you will become surprised how this rule simplifies everything you do. Integers, for example, are objects too, so you send messages to them, just as you do to any other object.
 
-Here are two examples.
 
-[[[example=true|caption=Sending ==+ 4== to ==3== yields the object ==7==.
+
+
+[[[example=true|caption=Sending ==+ 4== to ==3== yields the object ==7==.|label=ret7
 3 + 4
 >>> 7
 ]]]
 
-[[[example=true|caption=Sending ==factorial== to ==20== yields a large number.
+[[[example=true|caption=Sending ==factorial== to ==20== yields a large number.|label=20fact
 20 factorial
 >>> 2432902008176640000
 ]]]
 
+Listing *@ret7*  and *@20fact* are two examples.
 The object ==7== is different than the object returned by ==20 factorial==. ==7== is an instance of ==SmallInteger== while ==20 factorial== is an instance of ==LargePositiveInteger==. But because they are both polymorphic objects (they know how to answer to the same set of messages), none of the code, not even the implementation of ==factorial==, needs to know about this.
 
 Coming back to ''everything is an object'' rule, perhaps the most fundamental consequence of this rule is that classes are objects too. Classes are not second-class objects: they are really first-class objects that you can send messages to, inspect, and change as any object.
 
-From the point of view of sending a message, there is no difference between an instance such as ==7== and a class. The following example shows that we can send the message ==today== to the class ==Date== to obtain the current date of the system.
+From the point of view of sending a message, there is no difference between an instance such as ==7== and a class. The following example (in Listing *@today*) shows that we can send the message ==today== to the class ==Date== to obtain the current date of the system.
 
-[[[example=true|caption=Sending ==today== to class ==Date== yields the current date
+[[[example=true|caption=Sending ==today== to class ==Date== yields the current date|label=today
 Date today printString
 >>> '24 July 2021'
 ]]]
 
-The following example shows that we can ask a class for the instance variable names its instances will have - note that the message ==allInstVarNames== returns the inherited instance variable names too.
+The following Listing *@allInst* shows that we can ask a class for the instance variable names its instances will have. Note that the message ==allInstVarNames== returns the inherited instance variable names too.
 
-[[[example=true|caption=Getting all the instance variable names of ==Date== class.
+[[[example=true|caption=Getting all the instance variable names of ==Date== class.|label=allInst
 Date allInstVarNames 
 >>> #(#start #duration)
 ]]]
@@ -112,9 +114,9 @@ In Pharo, two instances of the same class cannot access each other's instance va
 
 !!!!Instance encapsulation example
 
-The method ==distanceTo:== of the class ==Point== computes the distance between the receiver and another point. The instance variables ==x== and ==y== of the receiver are accessed directly by the method body. However, the instance variables of the other point must be accessed by sending it the messages ==x== and ==y==.
+The method ==distanceTo:== of the class ==Point== computes the distance between the receiver and another point (see Listing *@distanceTo*). The instance variables ==x== and ==y== of the receiver are accessed directly by the method body. However, the instance variables of the other point must be accessed by sending it the messages ==x== and ==y==.
 
-[[[label=scr:distance|caption=Distance between two points.
+[[[label=scr:distance|caption=Distance between two points.|label=distanceTo
 Point >> distanceTo: aPoint
     "Answer the distance between aPoint and the receiver."
 
@@ -131,7 +133,7 @@ Point >> distanceTo: aPoint
 
 The key reason to prefer instance-based encapsulation to class-based encapsulation is that it enables different implementations of the same abstraction to coexist. For example, the method ==distanceTo:== doesn't need to know or care whether the argument ==aPoint== is an instance of the same class as the receiver.
 
-The argument object might be represented in polar coordinates, or as a record in a database, or on another computer in a distributed system. As long as it can respond to the messages ==x== and ==y==, the code of method ==distanceTo:== (shown above) will still work.
+The argument object might be represented in polar coordinates, or as a record in a database, or on another computer in a distributed system. As long as it can respond to the messages ==x== and ==y==, the code of method ==distanceTo:== (see Listing *@distanceTo*) will still work.
 
 !!!!Methods
 
@@ -201,18 +203,21 @@ In procedural programming (and in some static features of some object-oriented l
 In Pharo when we send a message, the caller does not decide which method will be executed. Instead, we ''tell'' an object to do something by sending it a message.
 A message is nothing but a name and a list of arguments. The ''receiver'' then decides how to respond by selecting its own ''method'' for doing what was asked. Since different objects may have different methods for responding to the same message, the method must be chosen ''dynamically'', when the message is received.
 
-[[[example=true|caption=Sending message ==+== with argument 4 to integer 3.
+
+
+As a consequence, we can send the ''same message'' to different objects, each of which may have ''its own method'' for responding to the message.
+
+In the  examples shown in Listing *@get7* and *@getPoint*, we do not decide how the ==SmallInteger== ==3== or the ==Point== ==(1@2)== should respond to the message ==\+ 4==. We let the objet decide: Each has its own method for ==\+==, and responds to ==\+ 4== accordingly.
+
+[[[example=true|caption=Sending message ==+== with argument 4 to integer 3.|label=get7
 3 + 4
->>> 7         
+>>> 7
 ]]]
-[[[example=true|caption=Sending message + with argument 4 to point (1@2).
+[[[example=true|caption=Sending message + with argument 4 to point (1@2).|label=getPoint
 (1@2) + 4
 >>> 5@6
 ]]]
 
-As a consequence, we can send the ''same message'' to different objects, each of which may have ''its own method'' for responding to the message.
-
-In the previous examples, we do not decide how the ==SmallInteger== ==3== or the ==Point== ==(1@2)== should respond to the message ==\+ 4==. We let the objet decide: Each has its own method for ==\+==, and responds to ==\+ 4== accordingly.
 
 !!!! Vocabulary point
 
@@ -287,17 +292,17 @@ anEllipse defaultColor
 >>> Color yellow
 ]]]
 
-The class ==EllipseMorph== implements ==defaultColor==, so the appropriate method is found immediately.
+The class ==EllipseMorph== implements ==defaultColor== (See Listing *@EDefaultColor*), so the appropriate method is found immediately.
 
-[[[label=scr:defaultColor|caption=A locally implemented method.
+[[[label=scr:defaultColor|caption=A locally implemented method.|label=EDefaultColor
 EllipseMorph >> defaultColor
      "Answer the default color/fill style for the receiver"
      ^ Color yellow
 ]]]
 
-In contrast, if we send the message ==openInWorld== to ==anEllipse==, the method is not immediately found, since the class ==EllipseMorph== does not implement ==openInWorld==. The search therefore continues in the superclass, ==BorderedMorph==, and so on, until an ==openInWorld== method is found in the class ==Morph== (see Figure *@fig:openInWorldLookup*).
+In contrast, if we send the message ==openInWorld== to ==anEllipse==, the method is not immediately found, since the class ==EllipseMorph== does not implement ==openInWorld==. The search therefore continues in the superclass, ==BorderedMorph==, and so on, until an ==openInWorld== method is found in the class ==Morph== (see Listing *@MopenInWorld* and Figure *@fig:openInWorldLookup*).
 
-[[[label=scr:openInWorld|caption=An inherited method.
+[[[label=scr:openInWorld|caption=An inherited method.|label=MopenInWorld
 Morph >> openInWorld
      "Add this morph to the world."
      self openInWorld: self currentWorld
