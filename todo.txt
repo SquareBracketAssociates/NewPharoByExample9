@@ -1,33 +1,3 @@
-## Chapter 11
-
-p. 151 A unigue caption "Listing 11-1 A simple trait." would be deleted. It is unique for all the chapter, so...
-
-p. 152 typo: "the trait TGreetable in invoking the method" should be "is invoking"
-
-p. 153 typo:
-
-"s an instance variable named #count." OR count ???
-
-"... by defining a method initialize followed by the class named." should be "trait name"
-p. 156 typo: "overriddent" - ???
-
-
-
-Several important things were left "behind the scene":
-
-can we create an instance of a trait - No
-how can I define a new trait? In the previous book were few words about Brouser and corresponding command such "New trait"
-
-This is the first code snippet of the chapter. So I added one sentence
-
-
-can I inherit the class that uses a trait - what will happen? What will happen if Bird uses TFlyingAbility, Eagle uses THighFlyingAbility, and Eagle inherits Bird? What metod fly will act? Will the conflict raise? - No, because ... - this may be interesting.
-
-
-
-
-
-
 
 
 
@@ -198,8 +168,10 @@ p. 106 "A receiver can be the first element of a message" - contradicts to the t
 p. 107
 
 The same situation: "For example in the message Pen new go: 100": the messages are "new" and "go: 100" but "Pen new go: 100" is an expression.
+
 The table: "100 pixels" jumped from third column to second one
 The table: "100 is increased by 20" is it true? The object 100 will be modified or the new object 120 will be created?
+
 p. 108 "Unary messages ... not containing a colon ():)" - the first rigth parenthese is needless.
 
 p. 111

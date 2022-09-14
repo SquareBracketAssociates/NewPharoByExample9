@@ -35,22 +35,22 @@ To help you identify the receiver of a message, we will underline it for you. We
 
 Figure *@fig:ellipse* represents two message sends, ==Color yellow== and ==aMorph color: Color yellow==, hence there are two ellipses. The message send ==Color yellow== is executed first so its ellipse is numbered ==1==.  There are two receivers: ==aMorph== which receives the message ==color: ...== and ==Color== which receives the message ==yellow==. Both receivers are underlined.
 
-A receiver can be the first element of a message, such as ==100== in the message send ==100 + 200== or ==Color== in the message send ==Color yellow==. However, a receiver can also be the result of other messages. For example in the message ==Pen new go: 100==, the receiver of the message ==go: 100== is the object returned by the message send ==Pen new==. In all the cases, a message is sent to an object called the ''receiver'' which may be the result of another message send.
+A receiver can be the first element of a message send, such as ==100== in the message send ==100 + 200== or ==Color== in the message send ==Color yellow==. However, a receiver can also be the result of other messages. For example in the expression ==Pen new go: 100==, the receiver of the message ==go: 100== is the object returned by the message send ==Pen new==. In all the cases, a message is sent to an object called the ''receiver'' which may be the result of another message send.
 
 |!Message send |!Message type |!Result
-|==Color yellow== | unary | Creates color yellow.
+|==Color yellow== | unary | Creates color yellow
 |==aPen  go: 100== | keyword | The pen moves forward 
-| | 100 pixels.
-|==100 + 20== | binary |  100 is increased by 20
+| | 100 pixels
+|==100 + 20== | binary |  We get 120
 |==Browser open== | unary | Opens a new browser.
 |==Pen new  go: 100== | unary and | Creates and moves a pen 
-| | keyword  |100 pixels forward.
+| | keyword  |100 pixels forward
 |==aPen go: 100 + 20== | keyword and  | The pen moves forward 
-| | binary | 120 pixels.
+| | binary | 120 pixels
 
 The table shows several examples of message sends. You should note that:
 - Not all message sends have arguments. Unary messages like ==open== do not have arguments.
-- Single keyword and binary messages like ==go: 100== and ==+ 20== each have one argument.
+- Single keyword and binary messages, like ==go: 100== and ==+ 20==, have  one argument.
 - There are also simple messages and composed ones. ==Color yellow== and ==100 + 20== are  simple:  a message is sent to an object, while the message send ==aPen go: 100 + 20== is composed of two messages: ==+ 20== is sent to ==100== and ==go:== is sent to ==aPen== with the argument being the result of the first message. 
 - A receiver can be an expression (such as an assignment, a message send or a literal) which returns an object. In ==Pen new go: 100==, the message ==go: 100== is sent to the object that results from the execution of the message send ==Pen new==.
 
@@ -70,7 +70,7 @@ It is important to note that:
 
 Unary messages are messages that do not require any argument.
 They follow the syntactic template: ==receiver messageName==.
-The selector is simply made up of a succession of characters not containing a colon ()==:==) ''e.g.'', ==factorial==, ==open==, ==class==.
+The selector is simply made up of a succession of characters not containing a colon (==:==) ''e.g.'', ==factorial==, ==open==, ==class==.
 
 [[[example=true
 89 sin
@@ -311,7 +311,7 @@ Similarly in the following example, we need the parentheses to force sending ==l
 ]]]
 
 !!!!!!Example.
-The message send ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is 134*100.
+The message send ==(65@325 extent: 134@100) center== returns the center of a rectangle whose top left point is (65, 325) and whose size is ==134*100==.
 The following example shows how the message is decomposed and sent.
 First the message between parentheses is sent: it contains two binary messages ==65@325== and ==134@100== that are sent first and return points, and a keyword message ==extent:== which is then sent and returns a rectangle.
 Finally the unary message ==center== is sent to the rectangle and a point is returned. Evaluating the message without parentheses would lead to an error because the object ==100== does not understand the message ==center==.
@@ -427,10 +427,10 @@ to + which produces the correct behaviour."
 +Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|width=80+
 
 |!Implicit precedence |!Explicitly parenthesized equivalent
-|aPen color: Color yellow | aPen color: (Color yellow)
-| aPen go: 100 \+ 20= | Pen go: (100 \+ 20)
-| aPen penSize: aPen penSize \+ 2 | aPen penSize: ((aPen penSize) \+ 2)
-| 2 factorial \+ 4 | (2 factorial) \+ 4
+| ==aPen color: Color yellow== | ==aPen color: (Color yellow)==
+| ==aPen go: 100 \+ 20== | ==Pen go: (100 \+ 20)==
+| ==aPen penSize: aPen penSize \+ 2== | ==aPen penSize: ((aPen penSize) \+ 2)==
+| ==2 factorial \+ 4== | ==(2 factorial) \+ 4==
 
 Note that the first rule stating that unary messages are sent prior to binary and keyword messages avoid the need to put explicit parentheses around them. Table above shows message sends written following the rules and equivalent message sends if the rules would not exist. Both message sends result in the same effect or return the same value.
 
