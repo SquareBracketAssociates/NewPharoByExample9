@@ -42,10 +42,10 @@ A receiver can be the first element of a message send, such as ==100== in the me
 |==aPen  go: 100== | keyword | The pen moves forward 
 | | 100 pixels
 |==100 + 20== | binary |  We get 120
-|==Browser open== | unary | Opens a new browser.
+|==Browser open== | unary | Opens a new browser
 |==Pen new  go: 100== | unary and | Creates and moves a pen 
 | | keyword  |100 pixels forward
-|==aPen go: 100 + 20== | keyword and  | The pen moves forward 
+|==aPen go: 100 + 20== | keyword and | The pen moves forward 
 | | binary | 120 pixels
 
 The table shows several examples of message sends. You should note that:
@@ -226,28 +226,34 @@ Unfortunately the rules are a bit too simplistic for arithmetic message sends, s
 
 We will dedicate a section to arithmetic inconsistencies.
 
+
 The following example, which is a bit more complex (!), offers a nice illustration that even complicated expressions can be read in a natural way:
 
 [[[
-[:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] value: Boolean 
->>> an IdentitySet(#or: #| #and: #& #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)
+[:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] 
+	value: Boolean 
+>>> #(#or: #| #and: #& #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)
 ]]]
 
 Here we want to know which methods of the ==Boolean== class are abstract.
-We ask some argument class, ==aClass==, for the keys of its method dictionary, and select those methods of that class that are abstract. 
-Then we bind the argument ==aClass== to the concrete value ==Boolean==. 
-We need parentheses only to send the binary message ==\>\>==, which selects a method from a class, before sending the unary message ==isAbstract== to that method. The result shows us which methods must be implemented by ==Boolean=='s concrete subclasses ==True== and ==False==.
+We ask some argument class, ==aClass==, for the keys of its method dictionary, and select those methods of that class that are abstract.
+Then we bind the argument ==aClass== to the concrete value ==Boolean==.
+We need parentheses only to send the binary message ==\>\>==, which selects a method from a class, before sending the unary message ==isAbstract== to that method. 
+The message ==\>\>== sent to a class gives access to the corresponding method in the class.
+The result shows us which methods must be implemented by ==Boolean=='s concrete subclasses ==True== and ==False==.
 
 In fact, we could also have written the equivalent but simpler expression: ==Boolean methodDict select: [:each | each isAbstract] thenCollect: [:each | each selector]==. 
 
+
 !!!!!!Example.
+
 In the message ==aPen color: Color yellow==, there is one ''unary'' message ==yellow== sent to the class ==Color== and a ''keyword'' message ==color:== sent to ==aPen==.
 Unary messages are sent first so the message send ==Color yellow== is sent (1).
 This returns a color object which is passed as argument of the message ==aPen color: aColor== (2).
 Figure *@fig:uKeyUn* shows graphically how messages are sent.
 
 [[[
-Decomposing the execution of aPen color: Color yellow
+"Decomposing the execution of aPen color: Color yellow"
          aPen color: Color yellow
 (1)         Color yellow         "unary message is sent first"
                >>> aColor
@@ -257,7 +263,8 @@ Decomposing the execution of aPen color: Color yellow
 !!!!!!Example.
  In the message ==aPen go: 100 + 20==, there is a ''binary'' message ==\+ 20== and a ''keyword'' message ==go:==. Binary messages are sent prior to keyword messages so ==100 + 20== is sent first (1): the message ==\+ 20== is sent to the object ==100== and returns the number ==120==. Then the message ==aPen go: 120== is sent with ==120== as argument (2). The following example shows how the message send is executed.
 
-[[[ Decomposing aPen go: 100 + 20
+[[[ 
+"Decomposing aPen go: 100 + 20"
          aPen go: 100 + 20
 (1)         100 + 20         "binary message first"
                >>>   120
@@ -344,9 +351,12 @@ Note that you already saw this behaviour in the example == 1.5 tan rounded asStr
 In the message sends ==Pen new down== all messages are unary messages, so the leftmost one, ==Pen new==, is sent first.
 This returns a newly created pen to which the second message ==down== is sent, as shown in Figure *@fig:unaryMessages*.
 
-+Decomposing Pen new down.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
++Decomposing ==Pen new down==.>file://figures/ucompoUn.png|label=fig:unaryMessages|width=60+
 
-!!!!Arithmetic inconsistencies
+
+
+!!! Arithmetic inconsistencies
+
 The message composition rules are simple.
 There is no notion of mathematical precedence because arithmetic messages are just messages as any other ones.
 So their result may look in inconsistent when executed them.
@@ -486,11 +496,22 @@ Parentheses, on the other hand, only affect the order of sending messages.
 So in ==(expression)==, the ==expression== will ''always'' be evaluated exactly once.
 
 [[[
-[ x isReady ] whileTrue: [ y doSomething ]  "both the receiver and the argument must be blocks"
-4 timesRepeat: [ Beeper beep ]              "the argument is evaluated more than once, so must be a block"
-(x isReady) ifTrue: [ y doSomething ]       "receiver is evaluated once, so is not a block
-                                            argument does not have to be evaluated not even once, 
-											so it is a block"
+"Both the receiver and the argument must be blocks"
+
+[ x isReady ] whileTrue: [ y doSomething ]
+]]]
+
+[[[
+"The argument is evaluated more than once, so must be a block"
+
+4 timesRepeat: [ Beeper beep ]
+]]]
+
+[[[
+"The receiver is evaluated once, so is not a block argument does not have to be 
+evaluated not even once, so it is a block"
+
+x isReady ifTrue: [ y doSomething ]
 ]]]
 
 !!!Expression sequences
@@ -509,7 +530,7 @@ box containsPoint: 40@50
 
 !!!Cascaded messages
 
-Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by  using a semicolon separator (==\;==).
+Pharo offers a way to send multiple messages to the same receiver, without stating it multiple times, by  using a semicolon separator (==\;==). There is no need to have a space before the semicolon.
 This is called the cascade in Pharo jargon.
 
 Syntactically a cascade is represented as follows:
@@ -536,7 +557,7 @@ Transcript
 
 In fact the receiver of all the cascaded messages is the receiver of the first message involved in a cascade.
 Note that the object receiving the cascaded messages can itself be the result of a message send.
-In the following example, the first cascaded message is ==setX:setY== since it is followed by a cascade.
+In the following example, the first cascaded message is ==setX:setY== since it is followed by a semicolon (cascade).
 The receiver of the cascaded message ==setX:setY:== is the newly created point resulting from the execution of ==Point new==, and ''not'' ==Point==.
 The subsequent message ==isZero== is sent to that same receiver.
 
