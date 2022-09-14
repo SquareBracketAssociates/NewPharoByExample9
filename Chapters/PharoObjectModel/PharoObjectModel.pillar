@@ -631,7 +631,7 @@ Singleton is the most misunderstood design pattern. When wrongly applied, it fav
 
 Imagine that we would like to implement a class ==WebServer==, and to use the Singleton pattern to ensure that it has only one instance.
 
-We define the class ==WebServer== as follow.
+First, we define the class ==WebServer== as follows:
 
 [[[
 Object subclass: #WebServer
@@ -647,26 +647,30 @@ WebServer class
     instanceVariableNames: 'uniqueInstance'
 ]]]
 
-As a result, the class ==WebServer class== will have a new instance variable (in addition to the variables that it inherits from ==Behavior==, such as ==superclass== and ==methodDict==). It means that the value of this extra instance variable will describe the instance of the class ==WebServer class== i.e., the class ==WebServer==.
+As a result, the class ==WebServer class== will have a new instance variable (in addition to the variables that it inherits from ==Behavior==, such as ==superclass== and ==methodDict==). It means that the value of this extra instance variable will describe the instance of the class ==WebServer class== i.e., the class ==WebServer==. The following code snippets show you the difference between the variables of the class ==Object== and the class ==WebServer==.
 
 [[[example=true
-Point class allInstVarNames
->>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category)"
+Object class allInstVarNames
+>>>  #(#superclass #methodDict #format #layout #organization 
+#subclasses #name #classPool #sharedPools #environment #category)
 ]]]
 
 [[[example=true
 WebServer class allInstVarNames
->>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category #uniqueInstance)"
+>>>  #(#superclass #methodDict #format #layout #organization 
+#subclasses #name #classPool #sharedPools #environment #category #uniqueInstance)
 ]]]
 
-We can now define a class method named ==uniqueInstance==, as shown below. This method first checks whether ==uniqueInstance== has been initialized. If it has not, the method creates an instance and assigns it to the class instance variable ==uniqueInstance==. Finally the value of ==uniqueInstance== is returned. 
-Since ==uniqueInstance== is a class instance variable, this method can directly access it.
+We can now define a class method named ==uniqueInstance==.
 
 [[[language=smalltalk
 WebServer class >> uniqueInstance
      uniqueInstance ifNil: [ uniqueInstance := self new ].
      ^ uniqueInstance
 ]]]
+
+This method first checks whether ==uniqueInstance== has been initialized. If it has not, the method creates an instance and assigns it to the class instance variable ==uniqueInstance==. Finally the value of ==uniqueInstance== is returned. 
+Since ==uniqueInstance== is a class instance variable, this method can directly access it.
 
 The first time that ==WebServer uniqueInstance== is executed, an instance of the class ==WebServer== will be created and assigned to the ==uniqueInstance== variable. The next time, the previously created instance will be returned instead of creating a new one. (This pattern, checking if a variable is nil in an accessor method, and initializing its value if it is nil, is called ''lazy initialization'').
 
@@ -687,7 +691,7 @@ it.
 
 !!!Shared variables
 
-Now we will look at an aspect of Pharo that is not so easily covered by our five rules: shared variables.
+Now we will look at an aspect of Pharo that is not so easily covered by our rules: shared variables.
 
 Pharo provides three kinds of shared variables:
 
@@ -703,7 +707,7 @@ The names of all of these shared variables start with a capital letter, to warn 
 
 In Pharo, all global variables are stored in a namespace called ==Smalltalk globals==, which is implemented as an instance of the class ==SystemDictionary==. Global variables are accessible everywhere. Every class is named by a global variable. In addition, a few globals are used to name special or commonly useful objects.
 
-The variable ==Processor== names an instance of ==ProcessScheduler==, the main process scheduler of Pharo.
+The variable ==Processor== refers to an instance of ==ProcessorScheduler==, the main process scheduler of Pharo.
 
 [[[example=true
 Processor class
@@ -733,7 +737,7 @@ Smalltalk globals at: #Smalltalk
 ""==World=="" is an instance of ==PasteUpMorph== that represents the screen. ==World bounds== answers a rectangle that defines the whole screen space; all Morphs on the screen are submorphs of ==World==.
 
 ""==Undeclared=="" is another dictionary, which contains all the undeclared variables. 
-If you write a method that references an undeclared variable, the browser will normally prompt you to declare it, for example as a global or as an instance variable of the class. However, if you later delete the declaration, the code will then reference an undeclared variable. Inspecting ==Undeclared== can sometimes help explain strange behaviour!
+If you write a method that references an undeclared variable starting with an uppercase, the browser will normally prompt you to declare it, for example as a global, class or class variable. However, if you later delete the declaration, the code will then reference an undeclared variable. Inspecting ==Undeclared== can sometimes help explain strange behaviour!
 
 !!!!Using globals in your code
 
@@ -784,11 +788,12 @@ The presence of class variables raises the question: how do we initialize them?
 
 One solution is lazy initialization (discussed earlier in this chapter). This
 can be done by introducing an accessor method which, when executed, initializes
-the variable if it has not yet been initialized. This implies that we must use
-the accessor all the time and never use the class variable directly. 
+the variable if it has not yet been initialized (as shown in Listing *@colornames*).
+ This implies that we must use the accessor all the time and never use the class variable directly. 
 This furthermore imposes the cost of the accessor send and the initialization test.
 
-[[[label=scr:colorClassInit|caption=Using Lazy initialization.
+[[[label=scr:colorClassInit|caption=Using Lazy initialization.|label=colornames
+ColorNames
    ColorNames ifNil: [ self initializeNames ].
    ^ ColorNames
 ]]]
@@ -812,7 +817,8 @@ If you adopt this solution, you will need to remember to invoke the ==initialize
 Pool variables are variables that are shared between several classes that may not be related by inheritance. Pool variables should be defined as class variables of dedicated classes (subclasses of ==SharedPool== as shown below). Our advice is to avoid them; you will need them only in rare and specific circumstances. Our goal here is therefore to explain pool variables just enough so that you can understand them when you are reading code.
 
 A class that accesses a pool variable must mention the pool in its class definition. 
-For example, the class ==Text== indicates that it is using the pool ==TextConstants==, which contains all the text constants such as ==CR== and ==LF==. ==TextConstants== defines the variables ==CR== that is bound to the value ==Character cr==, i.e., the carriage return character.
+For example, the class ==Text== indicates that it is using the pool ==TextConstants==, which contains all the text constants such as ==CR== and ==LF==.
+==TextConstants== defines the variable ==CR== that is bound to the value ==Character cr==, i.e., the carriage return character.
 
 [[[label=scr:textPoolDict|caption=Pool dictionaries in the ==Text== class.
 ArrayedCollection subclass: #Text
@@ -822,7 +828,7 @@ ArrayedCollection subclass: #Text
         package: 'Collections-Text'
 ]]]
 
-This allows methods of the class ==Text== to access the variables of the shared pool in the method body ''directly''. For example, we can write the following method. We see that eventhough ==Text== does not define a variable ==CR==, since it declared that it uses the shared pool ==TextConstants==, it can directly access it. 
+This allows methods of the class ==Text== to access the variables of the shared pool in the method body ''directly''. For example, we can write the following method. We see that even though ==Text== does not define a variable ==CR==, since it declared that it uses the shared pool ==TextConstants==, it can directly access it. 
 
 [[[label=scr:textTestCR|caption===Text>>testCR==.
 Text >> testCR
@@ -898,7 +904,7 @@ The object model of Pharo is both simple and uniform. Everything is an object, a
 
 -Everything is an object. Primitive entities like integers are objects, but also classes are first-class objects.
 -Every object is an instance of a class. Classes define the structure of their instances via ''private'' instance variables and the behaviour of their instances via ''public'' methods. Each class is the unique instance of its metaclass. Class variables are private variables shared by the class and all the instances of the class. Classes cannot directly access instance variables of their instances, and instances cannot access instance variables of their class. Accessors must be defined if this is needed.
--Every class has a superclass. The root of the single inheritance hierarchy is ==ProtoObject==. Classes you define, however, should normally inherit from ==Object== or its subclasses. There is no syntax for defining abstract classes. An abstract class is simply a class with an abstract method (one whose implementation consists of the expression ==self subclassResponsibility==). Although Pharo supports only single inheritance, it is easy to share implementations of methods by packaging them as ''traits''.
+-Every class has a superclass. The root of the single inheritance hierarchy is ==ProtoObject==. Classes you define, however, should normally inherit from ==Object== or its subclasses. There is no syntax for defining abstract classes. An abstract class is simply a class with an abstract method (one whose implementation consists of the expression ==self subclassResponsibility==). Although Pharo supports only single inheritance, it is easy to share implementations of methods by packaging them as ''traits'' as explained in the next chapter.
 -Everything happens by sending messages. We do not ''call methods'', we ''send messages''. The receiver then chooses its own method for responding to the message.
 -Method lookup follows the inheritance chain; ==self== sends are dynamic and start the method lookup in the class of the receiver, whereas ==super== sends start the method lookup in the superclass of class in which the ==super== send is written. From this perspective ==super== sends are more static than ==self== sends.
 -There are three kinds of shared variables. Global variables are accessible everywhere in the system. Class variables are shared between a class, its subclasses and its instances. Pool variables are shared between a selected set of classes. You should avoid shared variables as much as possible.
