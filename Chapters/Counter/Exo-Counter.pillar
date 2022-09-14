@@ -275,7 +275,7 @@ Now we have to write an initialization method that sets a default value of the =
 In Pharo, when creating a new object sending the message ==new== to a class, the newly created instance is sent a message ==initialize==. This gives the opportunity to the instance to initialize itself. 
 Therefore we will define a ==initialize== method that will correctly initialize the default value of a counter. 
 
-Since the ==initialize== messsage is sent to a new instance, it means that the ==initialize== method should be defined on the ''instance side'', just like any method that is sent to an instance of ==Counter== (==increment== and ==decrement==). The ==initialize== method is responsible for setting up the default values of instance variables.
+Since the ==initialize== message is sent to a new instance, it means that the ==initialize== method should be defined on the ''instance side'', just like any method that is sent to an instance of ==Counter== (==increment== and ==decrement==). The ==initialize== method is responsible for setting up the default values of instance variables.
 
 And so, on the instance side of ==Counter==, and in the ==initialization== protocol, write the following method (the body of this method is left blank. Fill it in!).
 

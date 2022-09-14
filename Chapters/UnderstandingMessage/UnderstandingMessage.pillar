@@ -226,18 +226,19 @@ Unfortunately the rules are a bit too simplistic for arithmetic message sends, s
 
 We will dedicate a section to arithmetic inconsistencies.
 
+!!!! Example
 
 The following example, which is a bit more complex (!), offers a nice illustration that even complicated expressions can be read in a natural way:
 
 [[[
-[:aClass | aClass methodDict keys select: [:aMethod | (aClass>>aMethod) isAbstract ]] 
-	value: Boolean 
+Boolean methodDict keys 
+	select: [:aMethod | (aClass>>aMethod) isAbstract ]
+
 >>> #(#or: #| #and: #& #ifTrue: #ifTrue:ifFalse: #ifFalse: #not #ifFalse:ifTrue:)
 ]]]
 
 Here we want to know which methods of the ==Boolean== class are abstract.
-We ask some argument class, ==aClass==, for the keys of its method dictionary, and select those methods of that class that are abstract.
-Then we bind the argument ==aClass== to the concrete value ==Boolean==.
+We ask the class ==Boolean== for the keys of its method dictionary and select those methods of that class that are abstract.
 We need parentheses only to send the binary message ==\>\>==, which selects a method from a class, before sending the unary message ==isAbstract== to that method. 
 The message ==\>\>== sent to a class gives access to the corresponding method in the class.
 The result shows us which methods must be implemented by ==Boolean=='s concrete subclasses ==True== and ==False==.
@@ -261,7 +262,7 @@ Figure *@fig:uKeyUn* shows graphically how messages are sent.
 ]]]
 
 !!!!!!Example.
- In the message ==aPen go: 100 + 20==, there is a ''binary'' message ==\+ 20== and a ''keyword'' message ==go:==. Binary messages are sent prior to keyword messages so ==100 + 20== is sent first (1): the message ==\+ 20== is sent to the object ==100== and returns the number ==120==. Then the message ==aPen go: 120== is sent with ==120== as argument (2). The following example shows how the message send is executed.
+ In the message ==aPen go: 100 + 20==, there is a ''binary'' message ==\+ 20== and a ''keyword'' message ==go:== (See Figure *@fig:uKeyBin*). Binary messages are sent prior to keyword messages so ==100 + 20== is sent first (1): the message ==\+ 20== is sent to the object ==100== and returns the number ==120==. Then the message ==aPen go: 120== is sent with ==120== as argument (2). The following example shows how the message send is executed.
 
 [[[ 
 "Decomposing aPen go: 100 + 20"
@@ -394,7 +395,7 @@ Here we see the common situations where extra parentheses are needed.
 ]]]
 
 !!!!!!Example.
-In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*==. 
+In the message sends ==20 \+ 2 \* 5==, there are only binary messages ==\+== and ==\*== (see Figure *@fig:ucompoNoBracketPar*). 
 However in Pharo there is no specific priority for the operations ==\+== and ==\*==.
 They are just binary messages, hence ==\*== does not have priority over ==\+==. Here the leftmost message ==\+== is sent first (1) and then the ==\*== is sent to the result as shown in below.
 
@@ -407,14 +408,14 @@ They are just binary messages, hence ==\*== does not have priority over ==\+==. 
 
 ]]]
 
-+Default execution order.>file://figures/ucompoNoBracketPar.png|width=55+
++Default execution order.>file://figures/ucompoNoBracketPar.pdf|label=fig:ucompoNoBracketPar|width=55+
 
 
 As shown in the previous example the result of this message send is not ==30== but ==110==.
 This result is perhaps unexpected but follows directly from the rules used to send messages.
 This is the price to pay for the simplicity of the model.
 To get the correct result, we should use parentheses.
-When messages are enclosed in parentheses, they are evaluated first.
+When messages are enclosed in parentheses, they are evaluated first (see Figure *@ucompoNumberBracket*).
 Hence the message send ==20 \+ (2 \* 5)== returns the result as shown.
 
 [[[
@@ -428,13 +429,11 @@ to + which produces the correct behaviour."
 ]]]
 
 
-+Changing default execution order using parentheses.>file://figures/ucompoNumberBracket.png|width=55+
++Changing default execution order using parentheses.>file://figures/ucompoNumberBracket.png|label=ucompoNumberBracket|width=55+
 
 @@important In Pharo, arithmetic operators such as ==\+== and ==\*== do not have different priority. ==\+== and ==\*== are just binary messages, therefore ==\*== does not have priority over ==\+==. Use parentheses to obtain the desired result.
 
-+Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png|width=80+
 
-+Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|width=80+
 
 |!Implicit precedence |!Explicitly parenthesized equivalent
 | ==aPen color: Color yellow== | ==aPen color: (Color yellow)==
@@ -452,6 +451,12 @@ Let's see how keywords messages are recognized by the compiler.
 !!!!Parentheses or not?
 
 The characters \[, \], \( and \) delimit distinct areas. Within such an area, a keyword message is the longest sequence of words terminated  by ==\:== that is not cut by the characters ==\.==,  or ==\;==. When the characters ==\[== and  ==\]==, ==\(== and ==\)== surround some words with colons, these words participate in the keyword message ''local'' to the area defined.
+
+Figures *@fig:uKeyUnBinPar* and *@fig:uunKeyBinPar* show some equivalent expressions.
+
++Equivalent messages using parentheses.>file://figures/uKeyUnBinPar.png|label=fig:uKeyUnBinPar|width=80+
+
++Equivalent messages using parentheses.>file://figures/uunKeyBinPar.png|label=fig:uunKeyBinPar|width=80+
 
 In this example, there are two distinct keyword messages:  ==rotatedBy:magnify:smoothing:== and ==at:put:==.
 
