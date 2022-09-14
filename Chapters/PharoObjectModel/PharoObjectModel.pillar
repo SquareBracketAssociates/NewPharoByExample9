@@ -654,7 +654,7 @@ Point class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category)"
 ]]]
 
-[[[example=true|label=scr:instance|caption=New state for classes.
+[[[example=true
 WebServer class allInstVarNames
 >>>  "#(#superclass #methodDict #format #layout #organization #subclasses #name #classPool #sharedPools #environment #category #uniqueInstance)"
 ]]]
@@ -662,7 +662,7 @@ WebServer class allInstVarNames
 We can now define a class method named ==uniqueInstance==, as shown below. This method first checks whether ==uniqueInstance== has been initialized. If it has not, the method creates an instance and assigns it to the class instance variable ==uniqueInstance==. Finally the value of ==uniqueInstance== is returned. 
 Since ==uniqueInstance== is a class instance variable, this method can directly access it.
 
-[[[language=smalltalk|label=scr:uniqueInstance|caption=Class-side accessor method ==uniqueInstance==.
+[[[language=smalltalk
 WebServer class >> uniqueInstance
      uniqueInstance ifNil: [ uniqueInstance := self new ].
      ^ uniqueInstance
