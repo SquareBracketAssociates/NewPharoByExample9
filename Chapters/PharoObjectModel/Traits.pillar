@@ -395,6 +395,7 @@ Eagle >> fly
 	^ 'Flying and flying high'
 ]]]
 
+
 Now there is only one ==fly== method: the one defined in the class ==Eagle==.
 
 [[[
