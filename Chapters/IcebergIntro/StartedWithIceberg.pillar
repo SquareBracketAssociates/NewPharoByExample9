@@ -184,15 +184,25 @@ Now you can push your changes and versions to the remote repository using the ""
 
 +Once you pushed you changes to the remote repository.>file://figures/S15-PushedFromReport.png|width=75|label=PushedFromReport+
 
-!!!Configuring Pharo to commit in HTTPS/SSH
+!!! Configuring Pharo to commit in HTTPS/SSH
 @sec:Configure
 
-Versioning code is just the first part of making sure that you and other developers can reload your code. We will now describe how to configure Pharo to automatically connect to be able to publish to github. In the next section we will describe how to create a baseline (a kind of map) to reload your application.
+We will now describe how to automatically configure Pharo to connect to github or other git related services. 
+In the next section, we will describe how to create a baseline (a kind of map of your application and its package).
+A baseline will make sure that you can reload your application and all its packages.
+
+!!!! Startup actions
+Pharo supports startup actions. Each time you will launch Pharo, Pharo will load some startup scripts and execute them. Basically all the file finishing by ==.st== located in your Pharo preferences folder will be executed.
+Some actions can be executed only once and others everytime. You can read more on this in the ==StartupPreferencesLoader== class.
 
 
-With recent version of github, you should use a token to connect using HTTPS to be able to commit to your repository.
+With recent version of github, to connect in HTTPS you should use a token. 
 Now you can configure Pharo to store your token as well your github account authentification. 
 In addition you can configure Pharo to point to your private and public SSH key as follows: 
+
+The following script should be placed in a ==.st== in your preferences folder (see below how to find it) 
+and it will automatically configure Iceberg to connect to your accounts. Note that the first action of the script is to hide the Pharo logo. 
+This way you can see if the startup script was executed.
 
 [[[
 StartupPreferencesLoader default executeAtomicItems: {
@@ -225,11 +235,14 @@ StartupPreferencesLoader default executeAtomicItems: {
 
 
 You should place this file in the preference folder that depends on your OS. 
-You can find this place by using the ==Startup== menu. Note that you can configure this 
-for all or one specific version of Pharo.
+You can find this folder by using the ==System== menu and its ==Startup/Version Preferences folder== item. 
+To get the path of the folder, execute ==self fullName== in the inspector opened by the menu item. You should then place 
+the script in file named ==xxx.st==. 
+
 
 
 !!! Defining a ==BaselineOf==
+Versioning code is just the first part of making sure that you and other developers can reload your code. 
 We describe now how to define a ''Baseline'': a project map that you will use to define the dependencies within your project and its dependencies on other projects.
 
 
