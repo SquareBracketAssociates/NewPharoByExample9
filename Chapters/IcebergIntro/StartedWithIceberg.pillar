@@ -184,12 +184,54 @@ Now you can push your changes and versions to the remote repository using the ""
 
 +Once you pushed you changes to the remote repository.>file://figures/S15-PushedFromReport.png|width=75|label=PushedFromReport+
 
-!!!Configuring your project
+!!!Configuring Pharo to commit in HTTPS/SSH
 @sec:Configure
 
-Versioning code is just the first part of making sure that you and other developers can reload your code. We will now describe how to define a ''Baseline'': a project map that you will use to define the dependencies within your project and its dependencies on other projects.
+Versioning code is just the first part of making sure that you and other developers can reload your code. We will now describe how to configure Pharo to automatically connect to be able to publish to github. In the next section we will describe how to create a baseline (a kind of map) to reload your application.
 
-!!!!Defining a ==BaselineOf==
+
+With recent version of github, you should use a token to connect using HTTPS to be able to commit to your repository.
+Now you can configure Pharo to store your token as well your github account authentification. 
+In addition you can configure Pharo to point to your private and public SSH key as follows: 
+
+[[[
+StartupPreferencesLoader default executeAtomicItems: {
+    StartupAction 
+        name: 'Logo' 
+        code: [ PolymorphSystemSettings showDesktopLogo: false] .
+    StartupAction 
+        name: 'Git Settings' 
+        code: [ 
+            Iceberg enableMetacelloIntegration: true.
+            IceCredentialStore current
+                    storeCredential: (IcePlaintextCredentials new
+                    username: 'xxxxxJohnDoe';
+                    password: 'xxxPassOfJohnDoe';
+                    host: 'github.com';
+                    yourself).
+            IceCredentialsProvider sshCredentials
+                username: 'git';
+                publicKey: 'Path to your public rsa file (public key)';
+                privateKey: 'Path to your private rsa file (private key)'.
+            IceCredentialStore current
+                storeCredential: (IceTokenCredentials new
+                    username: 'xxxxxJohnDoe';
+                    token: 'magictoken here ';
+                    yourself) 
+                forHostname: 'github.com'.
+            ]. 
+}
+]]]
+
+
+You should place this file in the preference folder that depends on your OS. 
+You can find this place by using the ==Startup== menu. Note that you can configure this 
+for all or one specific version of Pharo.
+
+
+!!! Defining a ==BaselineOf==
+We describe now how to define a ''Baseline'': a project map that you will use to define the dependencies within your project and its dependencies on other projects.
+
 
 A Baseline is a description of a project architecture. You express the dependencies between your packages and other projects so that all the dependent projects are loaded without the user having to understand them or the links between them.
 
