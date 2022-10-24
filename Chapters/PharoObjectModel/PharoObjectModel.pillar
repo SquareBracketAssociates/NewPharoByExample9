@@ -233,6 +233,7 @@ At some point action must take place:
 - ''Variable accesses'' are just accesses to the value of a variable.
 - ''Assignments'' are not message sends. An assignment to a variable causes that variable name to be freshly bound to the result of the expression in the scope of its definition.
 - ''Returns'' are not message sends. A return simply causes the computed result to be returned to the sender.
+- ''Primitives'' are not message sends. They are implemented in the virtual machine.
 - ''Pragmas'' are not message sends. They are method annotations.
 
 Other than these few exceptions, pretty much everything else does truly happen by sending messages.
