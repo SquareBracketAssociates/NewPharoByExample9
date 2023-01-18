@@ -5,8 +5,8 @@ To start off in Pharo, let's write a simple counter by following the steps given
 
 Note that the development flow promoted by this little tutorial is ''traditional'' in the sense that you will define a package, a class, ''then'' define its instance variables, ''then'' define its methods, and ''then'' finally execute it. Now in Pharo, developers usually follow a different workflow called Extreme Test-Driven Development: they execute an expression that raises an error. These errors are caught by the Debugger and the developer codes directly in the debugger, allowing the system to define instance variables and methods on the fly for them.
 
-Once you finish this tutorial, and you feel more confident in Pharo, we strongly suggest you do the exercise again using TDD: define test write, execute them, write the code to make the test pass and loop.
-In Pharo you can also use Extreme TDD: define test write, execute them, write the code in the debugger to make the test pass. Extreme TDD is a super powerful approach. However, you cannot really get the real feel without actually do it by yourself. There is another video in the Pharo mooc showing this powerful approach of coding. We really urge you to have a look at it and practice.
+Once you finish this tutorial, and you feel more confident in Pharo, we strongly suggest you do the exercise again using TDD: define and write a test, execute it, write the code to make the test pass and loop.
+In Pharo you can also use Extreme TDD: define and write atest, execute it, write the code in the debugger to make the test pass. Extreme TDD is a super powerful approach. However, you cannot really get the real feeling of it without actually doing it yourself. There is another video in the Pharo mooc showing this powerful approach of coding. We really urge you to have a look at it and practice.
 
 !!!Our use case
 
