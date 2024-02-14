@@ -571,7 +571,7 @@ receiver; here it will stay attached to the mouse pointer:
 DroppedMorph >> rejectDropMorphEvent: anEvent
 	| h |
 	h := anEvent hand.
-	WorldState addDeferredUIMessage: [ h grabMorph: self ].
+	self currentWorld worldState defer: [ h grabMorph: self ].
 	anEvent wasHandled: true
 ]]]
 
