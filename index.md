@@ -1,8 +1,7 @@
 % upbe9 stef
 <!inputFile|path=Chapters/Preface/Preface.md!>
 
-<!inputFile|path=Chapters/PharoTour/GettingStarted.md
-!>
+<!inputFile|path=Chapters/PharoTour/GettingStarted.md!>
 
 
 <!inputFile|path=Chapters/PharoTour/PharoTour.md
