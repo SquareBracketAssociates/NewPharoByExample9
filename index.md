@@ -5,8 +5,7 @@
 
 <!inputFile|path=Chapters/PharoTour/PharoTour.md!>
 
-<!inputFile|path=Chapters/PharoTour/Finding.md
-!>
+<!inputFile|path=Chapters/PharoTour/Finding.md!>
 % 1 upbe9 stef
 
 <!inputFile|path=Chapters/Counter/Exo-Counter.md
