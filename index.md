@@ -3,9 +3,7 @@
 
 <!inputFile|path=Chapters/PharoTour/GettingStarted.md!>
 
-
-<!inputFile|path=Chapters/PharoTour/PharoTour.md
-!>
+<!inputFile|path=Chapters/PharoTour/PharoTour.md!>
 
 <!inputFile|path=Chapters/PharoTour/Finding.md
 !>
