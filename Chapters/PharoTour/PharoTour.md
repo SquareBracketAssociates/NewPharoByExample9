@@ -2,7 +2,7 @@
 
 @cha:tour
 
-This chapter will take you on a high level tour of Pharo, to help you get comfortable with the environment. There will be plenty of opportunities to try things out, so it would be a good idea to have a computer handy when you read this chapter.
+This chapter will take you on a high-level tour of Pharo, to help you get comfortable with the environment. There will be plenty of opportunities to try things out, so it would be a good idea to have a computer handy when you read this chapter.
 
 In particular, you will learn about the different ways of interacting with the system, and discover some of the basic tools. You will also learn how to define a new method, create an object, and send it messages.
 
@@ -32,7 +32,7 @@ Pharo offers three ways to interact with the system using a mouse or other point
 
 **meta-click**: Finally, you may meta-click on any object displayed in the image to activate the "Morphic halo", an array of handles that are used to perform operations on the on-screen objects themselves, such as inspecting or resizing them (see Figure *@fig:halos@*). If you let the mouse linger over a handle, a help balloon will explain its function. In Pharo, how you meta-click depends on your operating system: either you must hold `Ctrl-Shift` or `Alt-Shift` (on Windows or Linux) or `Option-Shift-Cmd` (on macOS) while clicking.
 
-![Action Click (right click) brings the contextual menu.](figures/operating.png width=60&label=fig:operating)
+![Action Click (right click) brings the contextual menu. %width=60&anchor=fig:operating](figures/operating.png )
 
 ![Meta-Clicking on a window opens the Halos. % width=70&anchor=fig:halos](figures/addHalo.png)
 
@@ -158,9 +158,7 @@ It will open a System Browser on the method `slowFactorial`, showing something l
 
 In Pharo, the default System Browser is Calypso. However, as we have mentioned, it is possible to have other System Browsers installed in the Pharo environment. Each System Browser may have its own GUI that may be very different from the Calypso GUI. From now on, we will use the terms 'Browser', 'System Browser' and 'Calypso' interchangeably.
 
-% +The System Browser showing the ==printString== method of class %==Object==.>file://figures/browsingprintString.png|width=100|label=fig:systemBrowser2+
-
-![The System Browser showing the `printString` method of class `Object`. %width=100&anchor=fig:systemBrowser](figures/browsingprintString.png )
+![The System Browser showing the `printString` method of class `Object`. %width=100&anchor=fig:systemBrowser2](figures/browsingprintString.png )
 
 ### Chapter summary
 
